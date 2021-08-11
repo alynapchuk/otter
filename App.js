@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 
 import { Provider } from 'react-redux';
@@ -26,13 +25,14 @@ import { View, Text } from 'react-native';
 
 import Landing from './components/auth/Landing';
 import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 import Main from './components/Main';
 
 const Stack = createStackNavigator();
 
 export class App extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
       loaded: false
     }
@@ -77,6 +77,7 @@ export class App extends Component {
           <Stack.Navigator initialRouteName='Landing'>
             <Stack.Screen name='Otter' component={Landing} />
             <Stack.Screen name='Register' component={Register} />
+            <Stack.Screen name='Login' component={Login} />
           </Stack.Navigator>
         </NavigationContainer>
       )

@@ -1,6 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './redux/reducers';
+import thunk from 'redux-thunk'; // ALLOWS USE OF DISPATCH FUNCTION IN ACTIONS
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
 import firebase from 'firebase';
 
 firebase.initializeApp({
@@ -19,6 +26,7 @@ import { View, Text } from 'react-native';
 
 import Landing from './components/auth/Landing';
 import Register from './components/auth/Register';
+import Main from './components/Main';
 
 const Stack = createStackNavigator();
 
@@ -74,11 +82,12 @@ export class App extends Component {
       )
     }
 
-    // IF USER IS LOGGED IN, DISPLAYS HOME PAGE
+    // IF USER IS LOGGED IN, DISPLAYS MAIN HOME PAGE
     return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <Text>Placeholder</Text>
-      </View>
+      // PROVIDER MAKES THE REDUX STORE AVAILABLE TO CONNECT COMPONENTS
+      <Provider store={store}>
+        <Main />
+      </Provider>
     )
   }
 }

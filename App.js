@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './redux/reducers';
-import thunk from 'redux-thunk'; // ALLOWS USE OF DISPATCH FUNCTION IN ACTIONS
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import rootReducer from "./redux/reducers";
+import thunk from "redux-thunk"; // ALLOWS USE OF DISPATCH FUNCTION IN ACTIONS
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-import firebase from 'firebase';
+import firebase from "firebase";
 
 firebase.initializeApp({
   apiKey: "AIzaSyBoin7bNXBMDzo_dUCBsGPfBmwE7p7rg7o",
@@ -16,17 +16,18 @@ firebase.initializeApp({
   storageBucket: "otter-1407a.appspot.com",
   messagingSenderId: "711653970460",
   appId: "1:711653970460:web:0f31978f36fa295814c5d9",
-  measurementId: "G-LCTB5FV8W3"
-})
+  measurementId: "G-LCTB5FV8W3",
+});
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { View, Text } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { View, Text } from "react-native";
 
-import Landing from './components/auth/Landing';
-import Register from './components/auth/Register';
-import Login from './components/auth/Login';
-import Main from './components/Main';
+import Landing from "./components/auth/Landing";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import Main from "./components/Main";
+import DisplayImage from "./components/DisplayImage";
 
 const Stack = createStackNavigator();
 
@@ -34,8 +35,8 @@ export class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      loaded: false
-    }
+      loaded: false,
+    };
   }
 
   // DISPLAY LOADING SCREEN WHILE STATE IS LOADED
@@ -45,42 +46,41 @@ export class App extends Component {
       if (!user) {
         this.setState({
           loggedIn: false,
-          loaded: true
-        })
+          loaded: true,
+        });
         // USER IS LOGGED IN
       } else {
         this.setState({
           loggedIn: true,
-          loaded: true
-        })
+          loaded: true,
+        });
       }
-    })
+    });
   }
 
   render() {
-
     const { loaded, loggedIn } = this.state;
-
     // IF STATE NOT LOADED, DISPLAYS LOADING SCREEN
     if (!loaded) {
       return (
-        <View style={{ flex: 1, justifyContent: 'center' }}>
+        <View style={{ flex: 1, justifyContent: "center" }}>
           <Text>Loading...</Text>
         </View>
-      )
+      );
     }
 
     // IF USER NOT LOGGED IN, DISPLAY LOGIN/REGISTER
     if (!loggedIn) {
       return (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Landing'>
-            <Stack.Screen name='Otter' component={Landing} />
-            <Stack.Screen name='Register' component={Register} />
-            <Stack.Screen name='Login' component={Login} />
+          <Stack.Navigator initialRouteName="Landing">
+            <Stack.Screen name="Otter" component={Landing} />
+            <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="Login" component={Login} />
           </Stack.Navigator>
+          <DisplayImage />;
         </NavigationContainer>
-      )
+      );
     }
 
     // IF USER IS LOGGED IN, DISPLAYS MAIN HOME PAGE
@@ -89,8 +89,8 @@ export class App extends Component {
       <Provider store={store}>
         <Main />
       </Provider>
-    )
+    );
   }
 }
 
-export default App
+export default App;

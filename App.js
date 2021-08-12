@@ -8,7 +8,8 @@ import rootReducer from "./redux/reducers";
 import thunk from "redux-thunk"; // ALLOWS USE OF DISPATCH IN ACTIONS
 
 import firebase from "firebase"; // IMPORT OUR DATABASE & CONNECT TO SPECIFIED PROJECT
-firebase.initializeApp({
+
+const fbConfig = {
   apiKey: "AIzaSyBoin7bNXBMDzo_dUCBsGPfBmwE7p7rg7o",
   authDomain: "otter-1407a.firebaseapp.com",
   projectId: "otter-1407a",
@@ -16,7 +17,11 @@ firebase.initializeApp({
   messagingSenderId: "711653970460",
   appId: "1:711653970460:web:0f31978f36fa295814c5d9",
   measurementId: "G-LCTB5FV8W3",
-});
+}
+
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(fbConfig)
+}
 
 import Landing from "./components/auth/Landing";
 import Register from "./components/auth/Register";
@@ -70,7 +75,7 @@ export class App extends Component {
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Login" component={Login} />
           </Stack.Navigator>
-          <DisplayImage />;
+          <DisplayImage />
         </NavigationContainer>
       );
     }

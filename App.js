@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux"; // PROVIDER ALLOWS THE REDUX STORE TO CONNECT TO COMPONENTS
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { View, Text } from "react-native";
+import { createStore, applyMiddleware } from "redux"; // IMPORT CREATE STORE FUNCTION, APPLIES THUNK TO DISPATCH
 import rootReducer from "./redux/reducers";
-import thunk from "redux-thunk"; // ALLOWS USE OF DISPATCH FUNCTION IN ACTIONS
+import thunk from "redux-thunk"; // ALLOWS USE OF DISPATCH IN ACTIONS
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-import firebase from "firebase";
-
+import firebase from "firebase"; // IMPORT OUR DATABASE & CONNECT TO SPECIFIED PROJECT
 firebase.initializeApp({
   apiKey: "AIzaSyBoin7bNXBMDzo_dUCBsGPfBmwE7p7rg7o",
   authDomain: "otter-1407a.firebaseapp.com",
@@ -19,10 +18,6 @@ firebase.initializeApp({
   measurementId: "G-LCTB5FV8W3",
 });
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { View, Text } from "react-native";
-
 import Landing from "./components/auth/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
@@ -30,26 +25,24 @@ import Main from "./components/Main";
 import DisplayImage from "./components/DisplayImage";
 
 const Stack = createStackNavigator();
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export class App extends Component {
-  constructor(props) {
+  constructor(props) { // CURRENTLY NO VALUE, WILL BE PASSING PROPS TO FUTURE COMPONENTS
     super();
     this.state = {
       loaded: false,
     };
   }
 
-  // DISPLAY LOADING SCREEN WHILE STATE IS LOADED
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
-      // IF NOT LOADED OR LOGGED IN
-      if (!user) {
+      if (!user) { // IF NOT LOADED OR USER NOT LOGGED IN
         this.setState({
           loggedIn: false,
           loaded: true,
         });
-        // USER IS LOGGED IN
-      } else {
+      } else { // USER IS LOGGED IN
         this.setState({
           loggedIn: true,
           loaded: true,
@@ -60,8 +53,8 @@ export class App extends Component {
 
   render() {
     const { loaded, loggedIn } = this.state;
-    // IF STATE NOT LOADED, DISPLAYS LOADING SCREEN
-    if (!loaded) {
+
+    if (!loaded) { // IF STATE NOT LOADED, DISPLAYS LOADING SCREEN
       return (
         <View style={{ flex: 1, justifyContent: "center" }}>
           <Text>Loading...</Text>
@@ -69,8 +62,7 @@ export class App extends Component {
       );
     }
 
-    // IF USER NOT LOGGED IN, DISPLAY LOGIN/REGISTER
-    if (!loggedIn) {
+    if (!loggedIn) { // IF USER NOT LOGGED IN, DISPLAY LANDING PAGE WITH LOGIN/REGISTER
       return (
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
@@ -83,11 +75,13 @@ export class App extends Component {
       );
     }
 
-    // IF USER IS LOGGED IN, DISPLAYS MAIN HOME PAGE
-    return (
-      // PROVIDER MAKES THE REDUX STORE AVAILABLE TO CONNECT COMPONENTS
+    return ( // IF USER IS LOGGED IN, DISPLAYS MAIN HOME PAGE, WILL BE PASSING PROPS THROUGH FUTURE COMPONENTS
       <Provider store={store}>
-        <Main />
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Main'>
+            <Stack.Screen name='Main' component={Main} options={{ headerShown: false }} />
+          </Stack.Navigator>
+        </NavigationContainer>
       </Provider>
     );
   }

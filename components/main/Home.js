@@ -1,14 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
+import { connect } from 'react-redux'
+import firebase from 'firebase';
+require('firebase/firestore')
 
-export class Home extends Component {
-    render() {
-        return (
-            <View>
-                <Text>Home Page</Text>
-            </View>
-        )
-    }
+function Home(props) {
+
+    const { currentUser } = props;
+
+    return (
+        <View>
+            <Text>Welcome to your home screen, {currentUser.name}!</Text>
+        </View>
+    )
 }
 
-export default Home
+const mapStateToProps = (store) => ({
+    currentUser: store.userState.currentUser
+})
+
+export default connect(mapStateToProps, null)(Home);

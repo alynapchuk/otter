@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { user } from './user';
 
-// STORE STATE OF USER
+// REDUCERS HANDLE ACTIONS (CHANGES/EVENTS)
 
 const Reducers = combineReducers({
     userState: user

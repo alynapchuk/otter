@@ -2,21 +2,17 @@ import { USER_STATE_CHANGE } from "../constants/index";
 import firebase from "firebase";
 require('firebase/firestore')
 
-// CALL TO TRIGGER DATABASE ACTION
-
-export function fetchUser() {
+export function fetchUser() { // GETS USER DATA FROM FIREBASE DATABASE
     return ((dispatch) => {
-        // MAKES CALL TO FIRESTORE
         firebase.firestore()
-            .collection('users')
-            .doc(firebase.auth().currentUser.uid)
+            .collection('users') // SELECT USERS COLLECTION (BASICALLY A TABLE) FROM DATABASE
+            .doc(firebase.auth().currentUser.uid) // GETS DATA FROM LOGGED IN USER BASED ON USER ID (UID)
             .get()
             .then((response) => {
                 if (response.exists) {
-                    // SEND CALL TO REDUCER TO UPDATE STATE OF currentUser
-                    dispatch({ type: USER_STATE_CHANGE, currentUser: response.data() })
+                    dispatch({ type: USER_STATE_CHANGE, currentUser: response.data() }) // INPUTS DATA TO currentUser STATE
                 } else {
-                    console.log('Error: No response')
+                    console.log('Error: No response') // ERROR IF NO USER DATA IS AVAILABLE
                 }
             })
     })

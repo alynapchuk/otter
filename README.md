@@ -130,10 +130,10 @@ Contributions are what make the open source community such an amazing place to b
 
 <!-- CONTACT -->
 ## Contact
-Alyna Palamarchuk - [Portfolio](https://alynapchuk.com) - [Twitter](https://twitter.com/alynapchuk) - alynapchuk@gmail.com
-Otis Wilcox -
-Erin Harper -
-Joshua Simon -
+Alyna Palamarchuk - [Portfolio](https://alynapchuk.com) - [Twitter](https://twitter.com/alynapchuk) - alynapchuk@gmail.com <br />
+Otis Wilcox - <br />
+Erin Harper - <br />
+Joshua Simon - <br />
 
 
 

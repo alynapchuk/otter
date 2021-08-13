@@ -28,7 +28,7 @@ import Landing from "./components/auth/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Main from "./components/Main";
-import DisplayImage from "./components/DisplayImage";
+import RightOtter from "./components/RightOtter";
 
 const Stack = createStackNavigator();
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -81,7 +81,7 @@ export class App extends Component {
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Login" component={Login} />
           </Stack.Navigator>
-          <DisplayImage />
+          <RightOtter />
         </NavigationContainer>
       );
     }

@@ -13,7 +13,7 @@ const AgendaScreen = () => {
 
   const loadItems = (day) => {
     setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
+      for (let i = 0; i < 5; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = timeToString(time);
         if (!items[strTime]) {
@@ -61,7 +61,7 @@ const AgendaScreen = () => {
       <Agenda
         items={items}
         loadItemsForMonth={loadItems}
-        selected={"2017-05-16"}
+        selected={"2021-07-13"}
         renderItem={renderItem}
       />
     </View>

@@ -5,12 +5,11 @@ import { fetchUser, fetchUserPebbles } from "../redux/actions/index"; // IMPORT 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-
 import Home from "./main/Home";
 import Pebble from "./main/Pebble";
 import QuestionGame from "./main/QuestionGame";
 import AgendaScreen from "./AgendaScreen";
-import LoveLanguages from './main/LoveLanguages'
+import LoveLanguages from "./main/LoveLanguages";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +22,6 @@ export class Main extends Component {
   render() {
     return (
       <Tab.Navigator initialRouteName="Home">
-
         <Tab.Screen
           name="Home"
           component={Home}
@@ -60,14 +58,15 @@ export class Main extends Component {
           options={{
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="star" color={color} size={20} />
-              
-              <Tab.Screen
-                    name="Quiz"
-                    component={LoveLanguages}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name='game' color={color} size={20} />
-              
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Quiz"
+          component={LoveLanguages}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="game" color={color} size={20} />
             ),
           }}
         />

@@ -8,6 +8,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Home from './main/Home';
 import Pebble from './main/Pebble';
 import QuestionGame from './main/QuestionGame';
+import LoveLanguages from './main/LoveLanguages'
 
 const Tab = createBottomTabNavigator();
 
@@ -42,6 +43,15 @@ export class Main extends Component {
                 <Tab.Screen
                     name="Game"
                     component={QuestionGame}
+                    options={{
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialCommunityIcons name='game' color={color} size={20} />
+                        )
+                    }} />
+
+                    <Tab.Screen
+                    name="Quiz"
+                    component={LoveLanguages}
                     options={{
                         tabBarIcon: ({ color, size }) => (
                             <MaterialCommunityIcons name='game' color={color} size={20} />

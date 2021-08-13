@@ -21,15 +21,7 @@ export class Main extends Component {
   render() {
     return (
       <Tab.Navigator initialRouteName="Home">
-        <Tab.Screen
-          name="Agenda"
-          component={AgendaScreen}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home" color={color} size={20} />
-            ),
-          }}
-        />
+
         <Tab.Screen
           name="Home"
           component={Home}
@@ -41,11 +33,21 @@ export class Main extends Component {
         />
 
         <Tab.Screen
+          name="Agenda"
+          component={AgendaScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="calendar" color={color} size={20} />
+            ),
+          }}
+        />
+
+        <Tab.Screen
           name="Pebble"
           component={Pebble}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="pebble" color={color} size={20} />
+              <MaterialCommunityIcons name="message" color={color} size={20} />
             ),
           }}
         />
@@ -55,7 +57,7 @@ export class Main extends Component {
           component={QuestionGame}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="game" color={color} size={20} />
+              <MaterialCommunityIcons name="star" color={color} size={20} />
             ),
           }}
         />

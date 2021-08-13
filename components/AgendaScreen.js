@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 import { Agenda } from "react-native-calendars";
+import { Avatar, Card } from "react-native-paper";
 
 const timeToString = (time) => {
   const date = new Date(time);
@@ -36,10 +37,21 @@ const AgendaScreen = () => {
 
   const renderItem = (item) => {
     return (
-      <TouchableOpacity>
-        <View>
-          <Text>{item.name}</Text>
-        </View>
+      <TouchableOpacity style={{ marginRight: 10, marginTop: 17 }}>
+        <Card>
+          <Card.Content>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text>{item.name}</Text>
+              <Avatar.Text label="O" />
+            </View>
+          </Card.Content>
+        </Card>
       </TouchableOpacity>
     );
   };

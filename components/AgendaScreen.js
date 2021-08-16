@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TouchableOpacity, View, Text } from "react-native";
-import { Agenda } from "react-native-calendars";
+// import { Agenda } from "react-native-calendars";
 import { Avatar, Card } from "react-native-paper";
 
 const timeToString = (time) => {

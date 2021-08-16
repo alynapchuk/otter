@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, Image, Button } from "react-native";
 import { connect } from "react-redux";
 
-function Home(props) {
+function Home(props, { navigation }) {
   const { currentUser } = props;
 
   return (
@@ -12,6 +12,10 @@ function Home(props) {
         <Image
           style={styles.userImage}
           source={require('../../assets/user.png')} />
+
+        <Button
+          title="Change Photo"
+        />
 
         <Text>Welcome to your home screen, {currentUser.name}!</Text>
 

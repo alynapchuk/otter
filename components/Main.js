@@ -8,8 +8,9 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Home from "./main/Home";
 import Pebble from "./main/Pebble";
 import QuestionGame from "./main/QuestionGame";
-import AgendaScreen from "./main/AgendaScreen";
+// import AgendaScreen from "./main/AgendaScreen";
 import LoveLanguages from "./main/LoveLanguages";
+import UserImage from "./main/UserImage";
 
 const Tab = createBottomTabNavigator();
 
@@ -33,6 +34,16 @@ export class Main extends Component {
         />
 
         <Tab.Screen
+          name="Temporary"
+          component={UserImage}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="plus" color={color} size={20} />
+            ),
+          }}
+        />
+
+        {/* <Tab.Screen
           name="Agenda"
           component={AgendaScreen}
           options={{
@@ -40,7 +51,7 @@ export class Main extends Component {
               <MaterialCommunityIcons name="calendar" color={color} size={20} />
             ),
           }}
-        />
+        /> */}
 
         <Tab.Screen
           name="Pebble"

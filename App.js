@@ -28,7 +28,6 @@ import Landing from "./components/auth/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Main from "./components/Main";
-import RightOtter from "./components/RightOtter";
 
 const Stack = createStackNavigator();
 const store = createStore(rootReducer, applyMiddleware(thunk));

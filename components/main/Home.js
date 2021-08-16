@@ -1,9 +1,6 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import LeftOtter from "../LeftOtter";
-import RightOtter from "../RightOtter";
-require("firebase/firestore");
 
 function Home(props) {
   const { currentUser } = props;
@@ -11,33 +8,23 @@ function Home(props) {
   return (
     <>
       <View style={styles.container}>
+
+        <Image
+          style={styles.userImage}
+          source={require('../../assets/user.png')} />
+
         <Text>Welcome to your home screen, {currentUser.name}!</Text>
-        <View
-          style={{
-            backgroundColor: "lavender",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <LeftOtter />
-          <RightOtter />
-        </View>
-        <View
-          style={{
-            backgroundColor: "lavender",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <RightOtter />
-          <LeftOtter />
-        </View>
+
       </View>
     </>
   );
 }
+
+const mapStateToProps = (store) => ({
+  currentUser: store.userState.currentUser,
+});
+
+export default connect(mapStateToProps, null)(Home);
 
 const styles = StyleSheet.create({
   container: {
@@ -46,10 +33,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  userImage: {
+    height: 150,
+    width: 150,
+  }
 });
-
-const mapStateToProps = (store) => ({
-  currentUser: store.userState.currentUser,
-});
-
-export default connect(mapStateToProps, null)(Home);

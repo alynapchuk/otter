@@ -8,7 +8,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Home from "./main/Home";
 import Pebble from "./main/Pebble";
 import QuestionGame from "./main/QuestionGame";
-import AgendaScreen from "./AgendaScreen";
+import AgendaScreen from "./main/AgendaScreen";
 import LoveLanguages from "./main/LoveLanguages";
 
 const Tab = createBottomTabNavigator();

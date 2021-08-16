@@ -1,6 +1,5 @@
 import { USER_STATE_CHANGE } from "../constants/index";
 import firebase from "firebase";
-require('firebase/firestore')
 
 export function fetchUser() { // GETS USER DATA FROM FIREBASE DATABASE
     return ((dispatch) => {

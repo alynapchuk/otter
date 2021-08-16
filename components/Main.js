@@ -66,7 +66,7 @@ export class Main extends Component {
           component={LoveLanguages}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="game" color={color} size={20} />
+              <MaterialCommunityIcons name="heart" color={color} size={20} />
             ),
           }}
         />

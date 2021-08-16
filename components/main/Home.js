@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { connect } from "react-redux";
-import firebase from "firebase";
 import LeftOtter from "../LeftOtter";
 import RightOtter from "../RightOtter";
 require("firebase/firestore");

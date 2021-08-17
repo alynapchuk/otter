@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native';
 
+
+//reference: https://www.youtube.com/watch?v=hOVM9JCiLJs - Coding With Zaidi
+
 export class QuestionGame extends Component {
     render() {
         return (
             <View>
-                <Text>Question Game Page</Text>
+                <h1>Question Game Page</h1>
                 <Text>Hypothetical Questions to Learn More About Each Other
 If you could go back and redo one moment in your life, what would it be and why?
 If we had $1,000 extra each month, what would you want to do with it?

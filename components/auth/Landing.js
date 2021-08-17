@@ -7,7 +7,7 @@ export default function Landing({ navigation }) {
             <View style={styles.container}>
                 <Image
                     style={styles.intrologo}
-                    source={require('../../assets/intro.png')} />
+                    source={require('../../assets/intro.gif')} />
                 <Text style={styles.subhead}>The app for you and your significant otter.</Text>
             </View>
 

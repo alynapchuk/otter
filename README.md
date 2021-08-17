@@ -7,6 +7,11 @@
 <!-- PROJECT LOGO & HEADER -->
 <br />
 <p align="center">
+  <video controls autoplay>
+  <source src="assets/intro.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
   <a href="#">
     <img src="assets/intro.png" alt="Logo" width="50%">
   </a>

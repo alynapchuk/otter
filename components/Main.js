@@ -10,7 +10,6 @@ import Pebble from "./main/Pebble";
 import QuestionGame from "./main/QuestionGame";
 // import AgendaScreen from "./main/AgendaScreen";
 import LoveLanguages from "./main/LoveLanguages";
-import UserImage from "./main/UserImage";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,23 +21,19 @@ export class Main extends Component {
 
   render() {
     return (
-      <Tab.Navigator initialRouteName="Home">
+
+      <Tab.Navigator initialRouteName="Home"
+      >
         <Tab.Screen
           name="Home"
           component={Home}
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home" color={color} size={20} />
-            ),
-          }}
-        />
-
-        <Tab.Screen
-          name="Temporary"
-          component={UserImage}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="plus" color={color} size={20} />
+              <MaterialCommunityIcons
+                color="#03989e"
+                name="home"
+                size={20} />
             ),
           }}
         />
@@ -47,8 +42,9 @@ export class Main extends Component {
           name="Agenda"
           component={AgendaScreen}
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="calendar" color={color} size={20} />
+              <MaterialCommunityIcons name="calendar" color="#03989e" size={20} />
             ),
           }}
         /> */}
@@ -57,8 +53,9 @@ export class Main extends Component {
           name="Pebble"
           component={Pebble}
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="message" color={color} size={20} />
+              <MaterialCommunityIcons name="message" color="#03989e" size={20} />
             ),
           }}
         />
@@ -67,8 +64,9 @@ export class Main extends Component {
           name="Game"
           component={QuestionGame}
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="star" color={color} size={20} />
+              <MaterialCommunityIcons name="star" color="#03989e" size={20} />
             ),
           }}
         />
@@ -76,12 +74,14 @@ export class Main extends Component {
           name="Quiz"
           component={LoveLanguages}
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="heart" color={color} size={20} />
+              <MaterialCommunityIcons name="heart" color="#03989e" size={20} />
             ),
           }}
         />
       </Tab.Navigator>
+
     );
   }
 }

@@ -1,9 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, Button } from "react-native";
+import { useLinkTo } from '@react-navigation/native';
 import { connect } from "react-redux";
 
-function Home(props, { navigation }) {
+function Home(props) {
   const { currentUser } = props;
+  const linkTo = useLinkTo();
 
   return (
     <>
@@ -15,6 +17,7 @@ function Home(props, { navigation }) {
 
         <Button
           title="Change Photo"
+          onPress={() => linkTo('/Upload')}
         />
 
         <Text>Welcome to your home screen, {currentUser.name}!</Text>
@@ -33,7 +36,7 @@ export default connect(mapStateToProps, null)(Home);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "lavender",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },

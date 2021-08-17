@@ -25,9 +25,9 @@ const Questions = [
         },
         {
           text: `I hear from someone I love that they love me.`,
-          language: Languages.AFFIRMATION
+          language: Languages.WORDS_OF_AFFIRMATION
         },
       ]
 ];
 
-export default { Languages, Questions };
+export { Languages, Questions };

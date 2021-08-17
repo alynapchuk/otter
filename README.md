@@ -8,7 +8,7 @@
 <br />
 <p align="center">
   <a href="#">
-    <img src="#" alt="Logo" width="50%">
+    <img src="assets/intro.png" alt="Logo" width="50%">
   </a>
 
   <h3 align="center">Otter</h3>
@@ -161,4 +161,4 @@ Joshua Simon - <br />
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/alynapchuk/
 
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: 

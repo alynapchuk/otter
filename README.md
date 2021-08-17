@@ -8,7 +8,7 @@
 <br />
 <p align="center">
   <a href="#">
-    <img src="assets/intro.png" alt="Logo" width="50%">
+    <img src="intro.png" alt="Logo" width="50%">
   </a>
 
   <h3 align="center">Otter</h3>

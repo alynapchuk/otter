@@ -7,9 +7,6 @@
 <!-- PROJECT LOGO & HEADER -->
 <br />
 <p align="center">
-  <video autoplay>
-  <source src="assets/intro.mp4" type="video/mp4">
-</video>
   <a href="#">
     <img src="assets/intro.png" alt="Logo" width="50%">
   </a>

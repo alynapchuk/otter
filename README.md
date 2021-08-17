@@ -147,7 +147,7 @@ Joshua Simon - <br />
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [contributors-shield]: https://img.shields.io/github/contributors/alynapchuk/otter?color=219ebc&style=for-the-badge
-[contributors-url]: #
+[contributors-url]: https://github.com/alynapchuk/otter/graphs/contributors
 
 [languages-shield]: https://img.shields.io/github/languages/count/alynapchuk/otter?color=90ab60&style=for-the-badge
 [languages-url]: #

@@ -28,7 +28,7 @@ import Landing from "./components/auth/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Main from "./components/Main";
-import RightOtter from "./components/RightOtter";
+import Upload from './components/main/Upload'
 
 const Stack = createStackNavigator();
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -77,11 +77,10 @@ export class App extends Component {
       return (
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
-            <Stack.Screen name="Otter" component={Landing} />
+            <Stack.Screen name="Otter" component={Landing} options={{ headerShown: false }} />
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Login" component={Login} />
           </Stack.Navigator>
-          <RightOtter />
         </NavigationContainer>
       );
     }
@@ -96,6 +95,11 @@ export class App extends Component {
                 name="Main"
                 component={Main}
                 options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Upload"
+                component={Upload}
+                navigation={this.props.navigation}
               />
             </Stack.Navigator>
           </NavigationContainer>

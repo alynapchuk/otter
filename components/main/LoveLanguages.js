@@ -8,7 +8,14 @@ export class LoveLanguages extends Component {
         this.state = {
           loaded: false,
           text: "state was here",
-          currentPage: "start"
+          currentPage: "start",
+          loveLanguages: {
+              [Languages.WORDS_OF_AFFIRMATION] : 0,
+              [Languages.QUALITY_TIME] : 0,
+              [Languages.RECEIVING_GIFTS] : 0,
+              [Languages.ACTS_OF_SERVICE] : 0,
+              [Languages.PHYSICAL_TOUCH] : 0
+          }
         };
     }
 
@@ -27,12 +34,23 @@ export class LoveLanguages extends Component {
         })
     }
 
+    storeUserSelection(language) {
+        this.setState({
+            loveLanguages: {
+                ...this.state.loveLanguages,
+                [language] : this.state.loveLanguages[language] + 1
+            }
+        })
+
+    }
+    
+
     questions(){
         return (
             <View style={styles.container}>
                 <Text>It's more meaningful to me when...</Text>
-                <Text>{Questions[0][0].text}</Text>
-                <Text>{Questions[0][1].text}</Text>
+                <Button title={Questions[0][0].text} color="#841584" style={styles.button} onPress={() => this.storeUserSelection(Questions[0][0].language)}></Button>
+                <Button title={Questions[0][1].text} color="#841584" style={styles.button} onPress={() => this.storeUserSelection(Questions[0][1].language)}></Button>
             </View>
         )
     }
@@ -40,6 +58,9 @@ export class LoveLanguages extends Component {
         const currentPage = {
             "start": this.start(),
             "questions": this.questions()
+        }
+        if(!!this.state && !!this.state.loveLanguages){
+            console.log(this.state.loveLanguages)
         }
         return (
             currentPage[this.state.currentPage]
@@ -54,6 +75,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
 
+    },
+    button: {
+        backgroundColor: "red",
     }
 })
 

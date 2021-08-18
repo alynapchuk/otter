@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Button, TouchableHighlightBase } from 'react-native';
+import { StyleSheet, View, Text, Button } from 'react-native';
 import { Languages, Questions } from '../quiz/Quiz'
 
 export class LoveLanguages extends Component {

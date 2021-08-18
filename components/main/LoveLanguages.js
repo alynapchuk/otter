@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, TouchableHighlightBase } from 'react-native';
 import { Languages, Questions } from '../quiz/Quiz'
 
 export class LoveLanguages extends Component {
     constructor(props) {
         super();
         this.state = {
-          loaded: false,
-          text: "state was here",
           currentPage: "start",
           loveLanguages: {
               [Languages.WORDS_OF_AFFIRMATION] : 0,
@@ -15,7 +13,8 @@ export class LoveLanguages extends Component {
               [Languages.RECEIVING_GIFTS] : 0,
               [Languages.ACTS_OF_SERVICE] : 0,
               [Languages.PHYSICAL_TOUCH] : 0
-          }
+          },
+          currentQuestionPair: 0
         };
     }
 
@@ -34,30 +33,52 @@ export class LoveLanguages extends Component {
         })
     }
 
+    setResults() {
+        this.setState({
+            currentPage: "results"
+        })
+    }
+
     storeUserSelection(language) {
+        const index = this.state.currentQuestionPair
         this.setState({
             loveLanguages: {
                 ...this.state.loveLanguages,
                 [language] : this.state.loveLanguages[language] + 1
-            }
+            },
+            currentQuestionPair: index < Questions.length - 1 ? index + 1 : index
         })
-
+        if(index === Questions.length - 1){
+            console.log("REDIRECT NOW")
+            this.setResults()
+        }
     }
     
 
     questions(){
+        const index = this.state.currentQuestionPair
         return (
             <View style={styles.container}>
                 <Text>It's more meaningful to me when...</Text>
-                <Button title={Questions[0][0].text} color="#841584" style={styles.button} onPress={() => this.storeUserSelection(Questions[0][0].language)}></Button>
-                <Button title={Questions[0][1].text} color="#841584" style={styles.button} onPress={() => this.storeUserSelection(Questions[0][1].language)}></Button>
+                <Button title={Questions[index][0].text} color="#841584" style={styles.button} onPress={() => this.storeUserSelection(Questions[index][0].language)}></Button>
+                <Button title={Questions[index][1].text} color="#841584" style={styles.button} onPress={() => this.storeUserSelection(Questions[index][1].language)}></Button>
             </View>
         )
     }
+
+    results(){
+        return (
+        <View>
+        <Text>Welcome to the results page!</Text>
+        </View>
+        )
+    }
+
     render() {
         const currentPage = {
             "start": this.start(),
-            "questions": this.questions()
+            "questions": this.questions(),
+            "results": this.results()
         }
         if(!!this.state && !!this.state.loveLanguages){
             console.log(this.state.loveLanguages)

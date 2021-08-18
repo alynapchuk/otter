@@ -8,8 +8,8 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Home from "./main/Home";
 import Pebble from "./main/Pebble";
 import QuestionGame from "./main/QuestionGame";
-// import AgendaScreen from "./main/AgendaScreen";
 import LoveLanguages from "./main/LoveLanguages";
+import OtterCalendar from "./main/OtterCalendar";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,33 +21,32 @@ export class Main extends Component {
 
   render() {
     return (
-
-      <Tab.Navigator initialRouteName="Home"
-      >
+      <Tab.Navigator initialRouteName="Home">
         <Tab.Screen
           name="Home"
           component={Home}
           options={{
             headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons
-                color="#03989e"
-                name="home"
-                size={20} />
+              <MaterialCommunityIcons color="#03989e" name="home" size={20} />
             ),
           }}
         />
 
-        {/* <Tab.Screen
-          name="Agenda"
-          component={AgendaScreen}
+        <Tab.Screen
+          name="Calendar"
+          component={OtterCalendar}
           options={{
             headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="calendar" color="#03989e" size={20} />
+              <MaterialCommunityIcons
+                name="calendar"
+                color="#03989e"
+                size={20}
+              />
             ),
           }}
-        /> */}
+        />
 
         <Tab.Screen
           name="Pebble"
@@ -55,7 +54,11 @@ export class Main extends Component {
           options={{
             headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="message" color="#03989e" size={20} />
+              <MaterialCommunityIcons
+                name="message"
+                color="#03989e"
+                size={20}
+              />
             ),
           }}
         />
@@ -81,7 +84,6 @@ export class Main extends Component {
           }}
         />
       </Tab.Navigator>
-
     );
   }
 }

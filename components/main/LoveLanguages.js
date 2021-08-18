@@ -14,7 +14,8 @@ export class LoveLanguages extends Component {
               [Languages.ACTS_OF_SERVICE] : 0,
               [Languages.PHYSICAL_TOUCH] : 0
           },
-          currentQuestionPair: 0
+          currentQuestionPair: 0,
+          results: ''
         };
     }
 
@@ -53,6 +54,23 @@ export class LoveLanguages extends Component {
             this.setResults()
         }
     }
+
+    findUserResults() {
+        const loveArray= Object.entries(
+            this.state.loveLanguages
+        )
+        let topLanguage = ''
+        let largest = 0;
+        for (let i = 0; i < loveArray.length; i++){
+            if (loveArray[i][1] > largest) {
+                largest = loveArray[i][1]
+                topLanguage = loveArray[i][0]
+            }
+        }
+        console.log('THE HIGHEST LANGUAGE IS:', topLanguage)
+        console.log('THE LARGEST NUMBER IS:', largest)
+        console.log('THE LOVE ARRAY:', loveArray)
+    }
     
 
     questions(){
@@ -80,6 +98,7 @@ export class LoveLanguages extends Component {
             "questions": this.questions(),
             "results": this.results()
         }
+        this.findUserResults()
         if(!!this.state && !!this.state.loveLanguages){
             console.log(this.state.loveLanguages)
         }

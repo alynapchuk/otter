@@ -27,6 +27,16 @@ const Questions = [
           text: `I hear from someone I love that they love me.`,
           language: Languages.WORDS_OF_AFFIRMATION
         },
+      ],
+      [
+        {
+          text: `someone I love gives me a little gift as a token of our love of concern for each other.`,
+          language: Languages.RECEIVING_GIFTS,
+        },
+        {
+          text: `I get to spend uninterrupted leisure time with those I love.`,
+          language: Languages.QUALITY_TIME,
+        },
       ]
 ];
 

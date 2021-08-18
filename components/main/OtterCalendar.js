@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TouchableOpacity, View, Text } from "react-native";
-// import { Agenda } from "react-native-calendars";
+import { Agenda } from "react-native-calendars";
 import { Avatar, Card } from "react-native-paper";
 
 const timeToString = (time) => {
@@ -8,7 +8,7 @@ const timeToString = (time) => {
   return date.toISOString().split("T")[0];
 };
 
-const AgendaScreen = () => {
+const OtterCalendar = () => {
   const [items, setItems] = useState({});
 
   const loadItems = (day) => {
@@ -22,7 +22,7 @@ const AgendaScreen = () => {
           for (let j = 0; j < numItems; j++) {
             items[strTime].push({
               name: "Item for " + strTime + " #" + j,
-              height: Math.max(50, Math.floor(Math.random() * 150)),
+              height: Math.max(50, Math.floor(Math.random() * 5)),
             });
           }
         }
@@ -39,7 +39,7 @@ const AgendaScreen = () => {
     return (
       <TouchableOpacity style={{ marginRight: 10, marginTop: 17 }}>
         <Card>
-          <Card.Content>
+          <Card.Content style={{ backgroundColor: "gray" }}>
             <View
               style={{
                 flexDirection: "row",
@@ -61,11 +61,11 @@ const AgendaScreen = () => {
       <Agenda
         items={items}
         loadItemsForMonth={loadItems}
-        selected={"2021-07-13"}
+        selected={"2021-08-18"}
         renderItem={renderItem}
       />
     </View>
   );
 };
 
-export default AgendaScreen;
+export default OtterCalendar;

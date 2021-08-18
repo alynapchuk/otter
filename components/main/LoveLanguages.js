@@ -35,6 +35,7 @@ export class LoveLanguages extends Component {
     }
 
     setResults() {
+        this.findUserResults()
         this.setState({
             currentPage: "results"
         })
@@ -49,27 +50,40 @@ export class LoveLanguages extends Component {
             },
             currentQuestionPair: index < Questions.length - 1 ? index + 1 : index
         })
-        if(index === Questions.length - 1){
-            console.log("REDIRECT NOW")
-            this.setResults()
-        }
+
+        setTimeout(() => {
+            if(index === Questions.length - 1){
+                this.setResults()
+            }
+         }, 500);
     }
 
     findUserResults() {
-        const loveArray= Object.entries(
+        const loveArray = Object.entries(
             this.state.loveLanguages
         )
+        console.log("TEST",loveArray)
         let topLanguage = ''
         let largest = 0;
         for (let i = 0; i < loveArray.length; i++){
             if (loveArray[i][1] > largest) {
                 largest = loveArray[i][1]
                 topLanguage = loveArray[i][0]
+
             }
         }
+
+        const tiedLanguages = loveArray.filter(language => language[1] === largest)
+
+        this.setState({
+            results: topLanguage,
+            tiedLanguages: tiedLanguages
+        })
         console.log('THE HIGHEST LANGUAGE IS:', topLanguage)
         console.log('THE LARGEST NUMBER IS:', largest)
         console.log('THE LOVE ARRAY:', loveArray)
+
+
     }
     
 
@@ -86,9 +100,10 @@ export class LoveLanguages extends Component {
 
     results(){
         return (
-        <View>
-        <Text>Welcome to the results page!</Text>
-        </View>
+            <View style={styles.container}>
+                <Text>Welcome to the results page! Your Love Language is:</Text>
+                <Text>{this.state.results}</Text>
+            </View>
         )
     }
 
@@ -98,10 +113,7 @@ export class LoveLanguages extends Component {
             "questions": this.questions(),
             "results": this.results()
         }
-        this.findUserResults()
-        if(!!this.state && !!this.state.loveLanguages){
-            console.log(this.state.loveLanguages)
-        }
+        
         return (
             currentPage[this.state.currentPage]
         )

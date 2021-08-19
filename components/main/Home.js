@@ -13,7 +13,7 @@ function Home(props) {
 
         <Image
           style={styles.userImage}
-          source={require('../../assets/user.png')} />
+          source={currentUser.profile_picture || require('../../assets/profile.png')} />
 
         <Button
           title="Change Photo"

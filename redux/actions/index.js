@@ -17,9 +17,9 @@ export function fetchUser() { // GETS USER DATA FROM FIREBASE DATABASE
     })
 }
 
-export function fetchUserPebbles() { // SUDO CODE FOR HOW TO SET UP FETCHING PEBBLES
-    return ((dispatch) => {
-        firebase.firestore()
-            .collection('PEBBLE-EXAMPLE-COLLECTION')
-    })
-}
+// export function fetchUserPebbles() { // SUDO CODE FOR HOW TO SET UP FETCHING PEBBLES
+//     return ((dispatch) => {
+//         firebase.firestore()
+//             .collection('PEBBLE-EXAMPLE-COLLECTION')
+//     })
+// }

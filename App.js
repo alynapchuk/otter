@@ -67,7 +67,7 @@ export class App extends Component {
     if (!loaded) {
       // IF STATE NOT LOADED, DISPLAYS LOADING SCREEN
       return (
-        <View style={{ flex: 1, justifyContent: "center" }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
           <Text>Loading...</Text>
         </View>
       );

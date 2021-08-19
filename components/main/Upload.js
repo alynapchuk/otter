@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Image, View, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { useLinkTo } from '@react-navigation/native';
 
-export default function Upload(props) {
+export default function Upload({ navigation }) {
     const [image, setImage] = useState(null);
-    const linkTo = useLinkTo();
 
     useEffect(() => {
         (async () => {
@@ -19,31 +17,29 @@ export default function Upload(props) {
     }, []);
 
     const pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
+        const data = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [1, 1],
             quality: 1,
         });
-
-        console.log(result);
-
-        if (!result.cancelled) {
-            setImage(result.uri);
-        }
+        setImage(data.uri);
     };
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
             <Button
                 title="Select Image"
                 onPress={pickImage}
             />
-            <Button
-                title="Save Image"
-                onPress={() => linkTo('/Save')}
-            />
-            {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+            {image &&
+                <>
+                    <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+                    <Button
+                        title="Select ->"
+                        onPress={() => navigation.navigate('Save', { image })}
+                    /></>}
         </View>
     );
 }

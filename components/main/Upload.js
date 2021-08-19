@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Image, View, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { useLinkTo } from '@react-navigation/native';
 
-export default function Upload() {
+export default function Upload(props) {
     const [image, setImage] = useState(null);
+    const linkTo = useLinkTo();
 
     useEffect(() => {
         (async () => {
@@ -33,7 +35,14 @@ export default function Upload() {
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Button title="Pick an image from camera roll" onPress={pickImage} />
+            <Button
+                title="Select Image"
+                onPress={pickImage}
+            />
+            <Button
+                title="Save Image"
+                onPress={() => linkTo('/Save')}
+            />
             {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
         </View>
     );

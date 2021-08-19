@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"; // ALLOWS CONNECTION TO REDUX
 import { bindActionCreators } from "redux"; // BINDS ACTIONS TO THIS COMPONENT
-import { fetchUser, fetchUserPebbles } from "../redux/actions/index"; // IMPORT FUNCTION FROM ACTIONS
+import { fetchUser } from "../redux/actions/index"; // IMPORT FUNCTION FROM ACTIONS
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -16,7 +16,6 @@ const Tab = createBottomTabNavigator();
 export class Main extends Component {
   componentDidMount() {
     this.props.fetchUser();
-    this.props.fetchUserPebbles();
   }
 
   render() {
@@ -94,6 +93,6 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchProps = (dispatch) =>
-  bindActionCreators({ fetchUser, fetchUserPebbles }, dispatch); // DISPATCH ACTION TO THE STORE
+  bindActionCreators({ fetchUser }, dispatch); // DISPATCH ACTION TO THE STORE
 
 export default connect(mapStateToProps, mapDispatchProps)(Main);

@@ -29,7 +29,6 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Main from "./components/Main";
 import Upload from './components/main/Upload'
-import Save from './components/main/Save'
 
 const Stack = createStackNavigator();
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -67,7 +66,7 @@ export class App extends Component {
     if (!loaded) {
       // IF STATE NOT LOADED, DISPLAYS LOADING SCREEN
       return (
-        <View style={{ flex: 1, justifyContent: "center" }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
           <Text>Loading...</Text>
         </View>
       );
@@ -100,11 +99,6 @@ export class App extends Component {
               <Stack.Screen
                 name="Upload"
                 component={Upload}
-                navigation={this.props.navigation}
-              />
-              <Stack.Screen
-                name="Save"
-                component={Save}
                 navigation={this.props.navigation}
               />
             </Stack.Navigator>

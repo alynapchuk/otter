@@ -1,23 +1,18 @@
-import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { Button, View } from 'react-native';
+import { useLinkTo } from '@react-navigation/native';
 
-export class Pebble extends Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <Text>Pebble Page</Text>
-            </View>
-        )
-    }
+export default function Pebble() {
+    const linkTo = useLinkTo();
+
+    return (
+
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+            <Button
+                title="Send New Pebble"
+                onPress={() => linkTo('/Send')}
+            />
+        </View>
+    );
 }
-
-export default Pebble
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "white",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-});

@@ -1,5 +1,6 @@
-import { USER_STATE_CHANGE } from "../constants/index";
+import { USER_PEBBLE_STATE_CHANGE, USER_STATE_CHANGE } from "../constants/index";
 import firebase from "firebase";
+require('firebase/firestore')
 
 export function fetchUser() { // GETS USER DATA FROM FIREBASE DATABASE
     return ((dispatch) => {
@@ -17,9 +18,20 @@ export function fetchUser() { // GETS USER DATA FROM FIREBASE DATABASE
     })
 }
 
-// export function fetchUserPebbles() { // SUDO CODE FOR HOW TO SET UP FETCHING PEBBLES
-//     return ((dispatch) => {
-//         firebase.firestore()
-//             .collection('PEBBLE-EXAMPLE-COLLECTION')
-//     })
-// }
+export function fetchUserPebbles() {
+    return ((dispatch) => {
+        firebase.firestore()
+            .collection('users')
+            .doc(firebase.auth().currentUser.uid)
+            .collection('pebbles')
+            .get()
+            .then((response) => {
+                let pebbles = response.docs.map(doc => {
+                    const data = doc.data();
+                    const id = doc.id;
+                    return { id, ...data }
+                })
+                dispatch({ type: USER_PEBBLE_STATE_CHANGE, pebbles })
+            })
+    })
+}

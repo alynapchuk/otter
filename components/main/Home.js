@@ -4,6 +4,7 @@ import { useLinkTo } from '@react-navigation/native';
 import { connect } from "react-redux";
 
 function Home(props) {
+
   const { currentUser } = props;
   const linkTo = useLinkTo();
 
@@ -13,7 +14,7 @@ function Home(props) {
 
         <Image
           style={styles.userImage}
-          source={currentUser.profile_picture || require('../../assets/profile.png')} />
+          source={{ uri: currentUser.profile_picture } || require('../../assets/profile.png')} />
 
         <Button
           title="Change Photo"

@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Image, View, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { Button, Image, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import firebase from 'firebase'
+
+require('firebase/firestore')
+require('firebase/firebase-storage')
 
 export default function Upload({ navigation }) {
     const [image, setImage] = useState(null);
-
-    useEffect(() => {
-        (async () => {
-            if (Platform.OS !== 'web') {
-                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-                if (status !== 'granted') {
-                    alert('Sorry, we need camera roll permissions to make this work!');
-                }
-            }
-        })();
-    }, []);
 
     const pickImage = async () => {
         const data = await ImagePicker.launchImageLibraryAsync({
@@ -26,9 +19,52 @@ export default function Upload({ navigation }) {
         setImage(data.uri);
     };
 
+    const uploadProfilePicture = async () => {
+        const response = await fetch(image);
+        const blob = await response.blob();
+
+        const task = firebase
+            .storage()
+            .ref()
+            .child(`profile_picture/${firebase.auth().currentUser.uid}/${Math.random().toString(10)}`)
+            .put(blob);
+
+        const taskProgress = snapshot => {
+            console.log(`uploading... ${snapshot.bytesTransferred}`)
+        };
+
+        const taskError = snapshot => {
+            console.log(snapshot)
+        }
+
+        const taskCompleted = () => {
+            task.snapshot.ref.getDownloadURL().then((snapshot) => {
+                saveProfilePicture(snapshot);
+                console.log(snapshot)
+            })
+        }
+
+        task.on('state_changed', taskProgress, taskError, taskCompleted);
+
+    }
+
+    const saveProfilePicture = (profile_picture) => {
+
+        firebase.firestore()
+            .collection('users')
+            .doc(firebase.auth().currentUser.uid)
+            .update({
+                profile_picture
+            })
+            .then((function () {
+                navigation.popToTop()
+            }))
+
+    }
+
     return (
 
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Button
                 title="Select Image"
                 onPress={pickImage}
@@ -37,9 +73,11 @@ export default function Upload({ navigation }) {
                 <>
                     <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
                     <Button
-                        title="Select ->"
-                        onPress={() => navigation.navigate('Save', { image })}
-                    /></>}
+                        title="Upload Profile Picture"
+                        onPress={() => uploadProfilePicture()} />
+
+                </>
+            }
         </View>
     );
 }

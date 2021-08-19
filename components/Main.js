@@ -9,7 +9,7 @@ import Home from "./main/Home";
 import Pebble from "./main/Pebble";
 import QuestionGame from "./main/QuestionGame";
 import LoveLanguages from "./main/LoveLanguages";
-// import OtterCalendar from "./main/OtterCalendar";
+import OtterCalendar from "./main/OtterCalendar";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,7 +32,7 @@ export class Main extends Component {
           }}
         />
 
-        {/* <Tab.Screen
+        <Tab.Screen
           name="Calendar"
           component={OtterCalendar}
           options={{
@@ -45,7 +45,7 @@ export class Main extends Component {
               />
             ),
           }}
-        /> */}
+        />
 
         <Tab.Screen
           name="Pebble"

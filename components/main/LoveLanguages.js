@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, TouchableOpacity } from 'react-native';
 import { Languages, Questions } from '../quiz/Quiz'
 
 export class LoveLanguages extends Component {
@@ -22,15 +22,26 @@ export class LoveLanguages extends Component {
     start() {
         return (
             <View style={styles.container}>
-                <Text>Love Language Quiz</Text>
-                <Button title="Start" onPress={() => this.setQuestions()}></Button>
+                <Text style={styles.header}>Love Language Quiz</Text>
+                <br></br>
+                <TouchableOpacity style={styles.button} onPress={() => this.setQuestions()}>
+                <Text>Start</Text>
+                </TouchableOpacity>
             </View>
         )
     }  
     
     setQuestions(){
         this.setState({
-            currentPage: "questions"
+            currentPage: "questions",
+            currentQuestionPair: 0,
+            loveLanguages: {
+            [Languages.WORDS_OF_AFFIRMATION] : 0,
+            [Languages.QUALITY_TIME] : 0,
+            [Languages.RECEIVING_GIFTS] : 0,
+            [Languages.ACTS_OF_SERVICE] : 0,
+            [Languages.PHYSICAL_TOUCH] : 0
+            }
         })
     }
 
@@ -79,11 +90,9 @@ export class LoveLanguages extends Component {
             results: topLanguage,
             tiedLanguages: tiedLanguages
         })
-        console.log('THE HIGHEST LANGUAGE IS:', topLanguage)
+        // console.log('THE HIGHEST LANGUAGE IS:', topLanguage)
         console.log('THE LARGEST NUMBER IS:', largest)
         console.log('THE LOVE ARRAY:', loveArray)
-
-
     }
     
 
@@ -91,18 +100,24 @@ export class LoveLanguages extends Component {
         const index = this.state.currentQuestionPair
         return (
             <View style={styles.container}>
-                <Text>It's more meaningful to me when...</Text>
+                <Text style={styles.header2}>It's more meaningful to me when...</Text>
+                <br></br>
                 <Button title={Questions[index][0].text} color="#841584" style={styles.button} onPress={() => this.storeUserSelection(Questions[index][0].language)}></Button>
+                <br></br>
                 <Button title={Questions[index][1].text} color="#841584" style={styles.button} onPress={() => this.storeUserSelection(Questions[index][1].language)}></Button>
-            </View>
+                <br></br>
+                <Text>Question {index+1}/{Questions.length}</Text>
+                </View>
         )
     }
 
     results(){
         return (
             <View style={styles.container}>
-                <Text>Welcome to the results page! Your Love Language is:</Text>
+                <Text>Your Primary Love Language is:</Text>
                 <Text>{this.state.results}</Text>
+                <br></br>
+                <Button title="Take the quiz again!" onPress={() => this.setQuestions()}></Button>
             </View>
         )
     }
@@ -123,13 +138,24 @@ export class LoveLanguages extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "pink",
+        backgroundColor: "#85D0CB",
         alignItems: "center",
         justifyContent: "center"
 
     },
+    
+    header: {
+        fontSize: 36
+    },
+
+    header2: {
+        fontSize: 24
+    },
+
     button: {
-        backgroundColor: "red",
+        backgroundColor: "#841584",
+        paddingVertical: 20,
+        paddingHorizontal: 40
     }
 })
 

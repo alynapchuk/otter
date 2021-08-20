@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Button, TextInput } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 
 import firebase from 'firebase';
 
@@ -34,21 +34,25 @@ export class Register extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <TextInput
-                    placeholder='email'
+                    style={styles.input}
+                    placeholder='Email'
                     onChangeText={(email) => this.setState({ email })} />
                 <TextInput
-                    placeholder='password'
+                    style={styles.input}
+                    placeholder='Password'
                     secureTextEntry={true}
                     onChangeText={(password) => this.setState({ password })} />
                 <TextInput
-                    placeholder='name'
+                    style={styles.input}
+                    placeholder='Name'
                     onChangeText={(name) => this.setState({ name })} />
-                <Button
-                    onPress={() => this.onSignUp()}
-                    title='Sign Up'
-                />
+
+                <TouchableOpacity style={styles.buttons}
+                    onPress={() => this.onSignUp()}>
+                    <Text style={styles.text}>Sign Up</Text>
+                </TouchableOpacity>
             </View>
 
         )
@@ -56,3 +60,22 @@ export class Register extends Component {
 }
 
 export default Register
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "white",
+        justifyContent: 'space-evenly',
+    },
+    buttons: {
+        backgroundColor: '#03989e',
+        padding: 20,
+        alignItems: 'center'
+    },
+    text: {
+        color: 'white',
+        fontSize: 15,
+    },
+    input: {
+        padding: 20
+    }
+});

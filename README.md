@@ -8,7 +8,7 @@
 <br />
 <p align="center">
   <a href="#">
-    <img src="#" alt="Logo" width="50%">
+    <img src="assets/intro.gif" alt="Logo" width="50%">
   </a>
 
   <h3 align="center">Otter</h3>
@@ -147,7 +147,7 @@ Joshua Simon - <br />
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [contributors-shield]: https://img.shields.io/github/contributors/alynapchuk/otter?color=219ebc&style=for-the-badge
-[contributors-url]: #
+[contributors-url]: https://github.com/alynapchuk/otter/graphs/contributors
 
 [languages-shield]: https://img.shields.io/github/languages/count/alynapchuk/otter?color=90ab60&style=for-the-badge
 [languages-url]: #
@@ -161,4 +161,4 @@ Joshua Simon - <br />
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/alynapchuk/
 
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: 

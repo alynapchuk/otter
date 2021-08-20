@@ -6,6 +6,7 @@ import { View, Text } from "react-native";
 import { createStore, applyMiddleware } from "redux"; // IMPORT CREATE STORE FUNCTION, APPLIES THUNK TO DISPATCH
 import rootReducer from "./redux/reducers";
 import thunk from "redux-thunk"; // ALLOWS USE OF DISPATCH IN ACTIONS
+import { Provider as PaperProvider } from "react-native-paper";
 
 import firebase from "firebase"; // IMPORT OUR DATABASE & CONNECT TO SPECIFIED PROJECT
 
@@ -17,23 +18,24 @@ const fbConfig = {
   messagingSenderId: "711653970460",
   appId: "1:711653970460:web:0f31978f36fa295814c5d9",
   measurementId: "G-LCTB5FV8W3",
-}
+};
 
 if (firebase.apps.length === 0) {
-  firebase.initializeApp(fbConfig)
+  firebase.initializeApp(fbConfig);
 }
 
 import Landing from "./components/auth/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Main from "./components/Main";
-import DisplayImage from "./components/DisplayImage";
+import Upload from './components/main/Upload'
 
 const Stack = createStackNavigator();
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export class App extends Component {
-  constructor(props) { // CURRENTLY NO VALUE, WILL BE PASSING PROPS TO FUTURE COMPONENTS
+  constructor(props) {
+    // CURRENTLY NO VALUE, WILL BE PASSING PROPS TO FUTURE COMPONENTS
     super();
     this.state = {
       loaded: false,
@@ -42,12 +44,14 @@ export class App extends Component {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
-      if (!user) { // IF NOT LOADED OR USER NOT LOGGED IN
+      if (!user) {
+        // IF NOT LOADED OR USER NOT LOGGED IN
         this.setState({
           loggedIn: false,
           loaded: true,
         });
-      } else { // USER IS LOGGED IN
+      } else {
+        // USER IS LOGGED IN
         this.setState({
           loggedIn: true,
           loaded: true,
@@ -59,34 +63,47 @@ export class App extends Component {
   render() {
     const { loaded, loggedIn } = this.state;
 
-    if (!loaded) { // IF STATE NOT LOADED, DISPLAYS LOADING SCREEN
+    if (!loaded) {
+      // IF STATE NOT LOADED, DISPLAYS LOADING SCREEN
       return (
-        <View style={{ flex: 1, justifyContent: "center" }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
           <Text>Loading...</Text>
         </View>
       );
     }
 
-    if (!loggedIn) { // IF USER NOT LOGGED IN, DISPLAY LANDING PAGE WITH LOGIN/REGISTER
+    if (!loggedIn) {
+      // IF USER NOT LOGGED IN, DISPLAY LANDING PAGE WITH LOGIN/REGISTER
       return (
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
-            <Stack.Screen name="Otter" component={Landing} />
+            <Stack.Screen name="Otter" component={Landing} options={{ headerShown: false }} />
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Login" component={Login} />
           </Stack.Navigator>
-          <DisplayImage />
         </NavigationContainer>
       );
     }
 
-    return ( // IF USER IS LOGGED IN, DISPLAYS MAIN HOME PAGE, WILL BE PASSING PROPS THROUGH FUTURE COMPONENTS
+    return (
+      // IF USER IS LOGGED IN, DISPLAYS MAIN HOME PAGE, WILL BE PASSING PROPS THROUGH FUTURE COMPONENTS
       <Provider store={store}>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName='Main'>
-            <Stack.Screen name='Main' component={Main} options={{ headerShown: false }} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <PaperProvider>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Main">
+              <Stack.Screen
+                name="Main"
+                component={Main}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Upload"
+                component={Upload}
+                navigation={this.props.navigation}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </PaperProvider>
       </Provider>
     );
   }

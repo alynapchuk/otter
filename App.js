@@ -29,6 +29,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Main from "./components/Main";
 import Upload from './components/main/Upload'
+import Send from "./components/main/Send";
 
 const Stack = createStackNavigator();
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -99,6 +100,11 @@ export class App extends Component {
               <Stack.Screen
                 name="Upload"
                 component={Upload}
+                navigation={this.props.navigation}
+              />
+              <Stack.Screen
+                name="Send"
+                component={Send}
                 navigation={this.props.navigation}
               />
             </Stack.Navigator>

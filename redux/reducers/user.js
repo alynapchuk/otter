@@ -2,7 +2,7 @@ import { USER_STATE_CHANGE, USER_PEBBLE_STATE_CHANGE } from "../constants"
 
 const initialState = { // SET BLANK STATE FOR EACH OBJECT
     currentUser: '',
-    pebbles: []
+    pebbles: '',
 }
 
 export const user = (state = initialState, action) => { // UPDATE initialState WHEN ACTION RECEIVED

@@ -1,12 +1,21 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native';
+import React, { Component,
+ useState 
+ } from "react";
 
+import { StyleSheet,
+ View, 
+ Text, 
+ Button  
+ } from 'react-native';
 
+export class QuestionsGame extends Component {
+    constructor(props){
+        super();
+        this.state = {
+            currentPage: "start"
+        }
+    }
 
-import "./styles.css";
-import React, { useState } from "react";
-
-export default function App() {
   const questions = [
     {
       questionText: "Have you ever told a white lie?",
@@ -195,31 +204,32 @@ export default function App() {
     }
   };
 
+start(){
   return (
-    <div className="App">
-      <h1>Honest Otter Question Game</h1>
-      <h5> |Conversation starters for you & your significant Otter|</h5>
-      {/* replace "false" logic to display the score when the user has answered all the questions*/}
+      <View>
+    <Text className="App">
+      <Text>Honest Otter Question Game</Text>
+      <Text> |Conversation starters for you & your significant Otter|</Text>
       {showScore ? (
-        <div className="question-section">
+        <Text className="question-section">
           {" "}
           You scored {score} integrity points out of {questions.length}
-        </div>
+        </Text>
       ) : (
         <>
-          <div className="question-count">
+          <Text className="question-count">
             <span className="question__number">
               {" "}
               Question{" "}
               <span className="current-question">{currentQuestion + 1}</span>
             </span>
             /{questions.length}
-          </div>
-          <div className="question-text">
+          </Text>
+          <Text className="question-text">
             {" "}
             {questions[currentQuestion].questionText}
-          </div>
-          <div className="answer-section">
+          </Text>
+          <Text className="answer-section">
             {questions[currentQuestion].answerOptions.map((answerOptions) => (
               <button
                 onClick={() => handleAnswerButtonClick(answerOptions.isCorrect)}
@@ -227,19 +237,11 @@ export default function App() {
                 {answerOptions.answerText}
               </button>
             ))}
-          </div>
+          </Text>
         </>
       )}
-    </div>
+    </Text>
+    </View>
   );
 }
 
-
-
-//reference: https://www.youtube.com/watch?v=hOVM9JCiLJs - Coding With Zaidi
-
-export class QuestionGame extends Component {
-    render() {
-        return (
-
-        )

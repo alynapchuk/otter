@@ -21,12 +21,13 @@ export function fetchUser() { // GETS USER DATA FROM FIREBASE DATABASE
 export function fetchUserPebbles() {
     return ((dispatch) => {
         firebase.firestore()
-            .collection('users')
-            .doc(firebase.auth().currentUser.uid)
             .collection('pebbles')
+            .doc(firebase.auth().currentUser.uid)
+            .collection('userPebbles')
+            .orderBy('creation', 'asc')
             .get()
-            .then((response) => {
-                let pebbles = response.docs.map(doc => {
+            .then((snapshot) => {
+                let pebbles = snapshot.docs.map(doc => {
                     const data = doc.data();
                     const id = doc.id;
                     return { id, ...data }

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, Button } from "react-native";
+import { StyleSheet, View, Text, Image, Button, TouchableOpacity } from "react-native";
 import { useLinkTo } from '@react-navigation/native';
 import { connect } from "react-redux";
 
@@ -7,6 +7,8 @@ function Home(props) {
 
   const { currentUser } = props;
   const linkTo = useLinkTo();
+
+  console.log(currentUser)
 
   return (
     <>
@@ -16,10 +18,10 @@ function Home(props) {
           style={styles.userImage}
           source={{ uri: currentUser.profile_picture } || require('../../assets/profile.png')} />
 
-        <Button
-          title="Change Photo"
-          onPress={() => linkTo('/Upload')}
-        />
+        <TouchableOpacity style={styles.buttons}
+          onPress={() => linkTo('/Upload')}>
+          <Text style={styles.text}>Change Photo</Text>
+        </TouchableOpacity>
 
         <Text>Welcome to your home screen, {currentUser.name}!</Text>
 
@@ -44,5 +46,15 @@ const styles = StyleSheet.create({
   userImage: {
     height: 150,
     width: 150,
-  }
+  },
+  buttons: {
+    backgroundColor: '#03989e',
+    padding: 10,
+    margin: 10,
+    alignItems: 'center'
+  },
+  text: {
+    color: 'white',
+    fontSize: 15,
+  },
 });

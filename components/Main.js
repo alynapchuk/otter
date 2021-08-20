@@ -9,7 +9,7 @@ import Home from "./main/Home";
 import Pebble from "./main/Pebble";
 import QuestionGame from "./main/QuestionGame";
 import LoveLanguages from "./main/LoveLanguages";
-import OtterCalendar from "./main/OtterCalendar";
+// import OtterCalendar from "./main/OtterCalendar";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,17 +27,19 @@ export class Main extends Component {
           component={Home}
           options={{
             headerShown: false,
+            tabBarShowLabel: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons color="#03989e" name="home" size={20} />
             ),
           }}
         />
 
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Calendar"
           component={OtterCalendar}
           options={{
             headerShown: false,
+            tabBarShowLabel: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
                 name="calendar"
@@ -46,13 +48,14 @@ export class Main extends Component {
               />
             ),
           }}
-        />
+        /> */}
 
         <Tab.Screen
           name="Pebble"
           component={Pebble}
           options={{
             headerShown: false,
+            tabBarShowLabel: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
                 name="message"
@@ -68,6 +71,7 @@ export class Main extends Component {
           component={QuestionGame}
           options={{
             headerShown: false,
+            tabBarShowLabel: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="star" color="#03989e" size={20} />
             ),
@@ -78,6 +82,7 @@ export class Main extends Component {
           component={LoveLanguages}
           options={{
             headerShown: false,
+            tabBarShowLabel: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="heart" color="#03989e" size={20} />
             ),
@@ -91,6 +96,7 @@ export class Main extends Component {
 const mapStateToProps = (store) => ({
   // SELECTS DATA FROM STORE THAT CONNECTED COMPONENT NEEDS
   currentUser: store.userState.currentUser,
+  pebbles: store.userState.pebbles,
 });
 
 const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchUserPebbles }, dispatch); // DISPATCH ACTION TO THE STORE

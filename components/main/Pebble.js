@@ -11,32 +11,26 @@ function Pebble(props) {
     const { currentUser } = props;
     const linkTo = useLinkTo();
 
-    console.log(currentUser)
+    console.log(pebbles)
 
+    const toSend = () => linkTo('/Send')
 
-    return (
-        <>
-            <View style={styles.container}>
-                {pebbles.map((pebble) => (
-                    <>
-                        <Text>{currentUser.name}</Text>
-                        <Text>{pebble.title}</Text>
-                        <Text>{pebble.message}</Text>
-                    </>
-                ))}
+    return (<>
+        {pebbles.map((pebble, index) => (
+            <View style={styles.pebbleContainer} key={index}>
+                <Text>{currentUser.name}</Text>
+                <Text>{pebble.title}</Text>
+                <Text>{pebble.message}</Text>
             </View>
+        ))}
+        <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.buttons}
+                onPress={toSend}>
+                <Text style={styles.text}>Send New Pebble</Text>
+            </TouchableOpacity>
+        </View>
 
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.buttons}
-                    onPress={() => linkTo('/Send')}>
-                    <Text style={styles.text}>Send New Pebble</Text>
-                </TouchableOpacity>
-            </View>
-
-        </>
-
-
-    )
+    </>)
 }
 
 const mapStateToProps = (store) => ({
@@ -47,11 +41,11 @@ const mapStateToProps = (store) => ({
 export default connect(mapStateToProps, null)(Pebble);
 
 const styles = StyleSheet.create({
-    container: {
+    pebbleContainer: {
         flex: 1,
+        alignItems: "flex-end",
         backgroundColor: "white",
-        alignItems: "center",
-        justifyContent: "center"
+        margin: 5,
     },
     buttonContainer: {
         flex: 1,

@@ -2,17 +2,17 @@ import { USER_PEBBLE_STATE_CHANGE, USER_STATE_CHANGE } from "../constants/index"
 import firebase from "firebase";
 require('firebase/firestore')
 
-export function fetchUser() { // GETS USER DATA FROM FIREBASE DATABASE
+export function fetchUser() {
     return ((dispatch) => {
         firebase.firestore()
-            .collection('users') // SELECT USERS COLLECTION (BASICALLY A TABLE) FROM DATABASE
-            .doc(firebase.auth().currentUser.uid) // GETS DATA FROM LOGGED IN USER BASED ON USER ID (UID)
+            .collection('users')
+            .doc(firebase.auth().currentUser.uid)
             .get()
             .then((response) => {
                 if (response.exists) {
-                    dispatch({ type: USER_STATE_CHANGE, currentUser: response.data() }) // INPUTS DATA TO currentUser STATE
+                    dispatch({ type: USER_STATE_CHANGE, currentUser: response.data() })
                 } else {
-                    console.log('Error: No response') // ERROR IF NO USER DATA IS AVAILABLE
+                    console.log('Error: No response')
                 }
             })
     })

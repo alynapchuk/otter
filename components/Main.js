@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { connect } from "react-redux"; // ALLOWS CONNECTION TO REDUX
-import { bindActionCreators } from "redux"; // BINDS ACTIONS TO THIS COMPONENT
-import { fetchUser, fetchUserPebbles } from "../redux/actions/index"; // IMPORT FUNCTION FROM ACTIONS
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetchUser, fetchUserPebbles } from "../redux/actions/index";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -94,11 +94,10 @@ export class Main extends Component {
 }
 
 const mapStateToProps = (store) => ({
-  // SELECTS DATA FROM STORE THAT CONNECTED COMPONENT NEEDS
   currentUser: store.userState.currentUser,
   pebbles: store.userState.pebbles,
 });
 
-const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchUserPebbles }, dispatch); // DISPATCH ACTION TO THE STORE
+const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchUserPebbles }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(Main);

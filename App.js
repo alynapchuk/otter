@@ -28,8 +28,9 @@ import Landing from "./components/auth/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Main from "./components/Main";
-import Upload from './components/main/Upload'
+import Upload from "./components/main/Upload";
 import Send from "./components/main/Send";
+import AddEvent from "./components/main/AddEvent";
 import LoveLanguages from "./components/main/LoveLanguages";
 import Search from "./components/main/Search";
 
@@ -69,7 +70,13 @@ export class App extends Component {
     if (!loaded) {
       // IF STATE NOT LOADED, DISPLAYS LOADING SCREEN
       return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}
+        >
           <Text>Loading...</Text>
         </View>
       );
@@ -80,7 +87,11 @@ export class App extends Component {
       return (
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
-            <Stack.Screen name="Otter" component={Landing} options={{ headerShown: false }} />
+            <Stack.Screen
+              name="Otter"
+              component={Landing}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Login" component={Login} />
           </Stack.Navigator>
@@ -110,6 +121,10 @@ export class App extends Component {
                 navigation={this.props.navigation}
               />
               <Stack.Screen
+                name="AddEvent"
+                component={AddEvent}
+                />
+                <Stack.Screen
                 name="Search"
                 component={Search}
                 navigation={this.props.navigation}

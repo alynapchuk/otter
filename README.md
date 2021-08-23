@@ -52,7 +52,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Otter is a relationship enhancement app which was designed to improve today's dating experience. Whether your relationship is in the beginning stages, or thriving along, Otter can assist the growth of any couple. By considering and assesing the need's of ourselves and our significant Otter (see what we did there?), Otter emphasizes the focus on relationship communication by incorporating a Love language survey, a conversational questionaire and user friendly interface. Otter's Pebble system awards merit to encourage consistent use of the app as well as a scheduling feature to ensure optimal use of couple time. The Otter team thanks all developers and users for checking out our works and encourage critiques for future enhancements. 
 
 <u>Key Focuses</u>
 * Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

@@ -55,7 +55,7 @@
 Otter is a relationship enhancement app which was designed to improve today's dating experience. Whether your relationship is in the beginning stages, or thriving along, Otter can assist the growth of any couple. By considering and assesing the need's of ourselves and our significant Otter (see what we did there?), Otter emphasizes the focus on relationship communication by incorporating a Love language survey, a conversational questionaire and user friendly interface. Otter's Pebble system awards merit to encourage consistent use of the app as well as a scheduling feature to ensure optimal use of couple time. The Otter team thanks all developers and users for checking out our works and encourage critiques for future enhancements. 
 
 <u>Key Focuses</u>
-* Calendar - Plan upcoming dates, celebrations and set important reminders!
+* Calendar - Otter's calendar feature allows couples to keep each other up-to-date on upcoming life changes and provides a non-intrusive reminder of important milestones. Not really enthusiac about a new job interview? Otter's calendar features a "mood" setting to express any nervousness, or anticipated excitement.
 * Love Language Game - How do you express love? How does your Otter feel loved? Take the Otter Love Language quiz to learn more about the love patterns in your realtionship!
 * Otter Question Game -  Running out of topic? Don't worry we've got you covered with 20 thought provoking questions!
 
@@ -66,9 +66,8 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 
 ### Built With
 
-* JavaScript
-* React JS
-* React Native
+* React Native | React JS
+* JavaScript | Firebase
 
 
 
@@ -133,9 +132,7 @@ Contributions are what make the open source community such an amazing place to b
 Alyna Palamarchuk - [Portfolio](https://alynapchuk.com) - [LinkedIn](https://www.linkedin.com/in/alynapchuk/) - alynapchuk@gmail.com <br />
 Otis Wilcox - <br />
 Erin Harper - <br />
-Joshua Simon - <br />
-
-
+Joshua Simon - <br />[Portfolio](http://www.simonj.network) -[LinkedIn](https://www.linkedin.com/in/joshua-simon-2000b3185/) - itt.simonj@gmail.com <br/>
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements

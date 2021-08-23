@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import firebase from 'firebase';
 import { StyleSheet, View, Text, Button, TouchableOpacity } from 'react-native';
 import { Languages, Questions } from '../quiz/Quiz'
+
+require('firebase/firestore')
 
 export class LoveLanguages extends Component {
     constructor(props) {
@@ -19,16 +22,28 @@ export class LoveLanguages extends Component {
         };
     }
 
+    componentDidMount() {
+        firebase.firestore()
+            .collection('users')
+            .doc(firebase.auth().currentUser.uid)
+            .get()
+            .then((user) => {
+                this.setState({
+                    results: user.data().lovelanguage
+                })
+            })       
+    }
+
     start() {
-        return (
+        let takeQuiz = (
             <View style={styles.container}>
                 <Text style={styles.header}>Love Language Quiz</Text>
-                <br></br>
                 <TouchableOpacity style={styles.button} onPress={() => this.setQuestions()}>
                 <Text>Start</Text>
                 </TouchableOpacity>
             </View>
         )
+        return (this.state.results ? this.results() : takeQuiz)
     }  
     
     setQuestions(){
@@ -50,6 +65,15 @@ export class LoveLanguages extends Component {
         this.setState({
             currentPage: "results"
         })
+    }
+
+    StoreUserLoveLanguage = () => {
+        firebase.firestore()
+            .collection('users')
+            .doc(firebase.auth().currentUser.uid)
+            .update({
+                'lovelanguage': this.state.results
+            })
     }
 
     storeUserSelection(language) {
@@ -90,7 +114,7 @@ export class LoveLanguages extends Component {
             results: topLanguage,
             tiedLanguages: tiedLanguages
         })
-        // console.log('THE HIGHEST LANGUAGE IS:', topLanguage)
+        this.StoreUserLoveLanguage();
         console.log('THE LARGEST NUMBER IS:', largest)
         console.log('THE LOVE ARRAY:', loveArray)
     }
@@ -116,7 +140,6 @@ export class LoveLanguages extends Component {
             <View style={styles.container}>
                 <Text>Your Primary Love Language is:</Text>
                 <Text>{this.state.results}</Text>
-                <br></br>
                 <Button title="Take the quiz again!" onPress={() => this.setQuestions()}></Button>
             </View>
         )

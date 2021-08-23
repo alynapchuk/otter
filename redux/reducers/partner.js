@@ -1,24 +1,26 @@
-import { USER_STATE_CHANGE, USER_PEBBLE_STATE_CHANGE, USER_PARTNER_STATE_CHANGE } from "../constants"
+import { PARTNER_STATE_CHANGE, PARTNER_PEBBLE_STATE_CHANGE, PARTNER_PARTNER_STATE_CHANGE } from "../constants"
 
 const initialState = {
-    currentUser: '',
+    currentPartner: '',
     pebbles: '',
     partnerID: '',
 }
 
-export const user = (state = initialState, action) => {
+console.log(initialState)
+
+export const partner = (state = initialState, action) => {
     switch (action.type) {
-        case USER_STATE_CHANGE:
+        case PARTNER_STATE_CHANGE:
             return {
                 ...state,
-                currentUser: action.currentUser
+                currentPartner: action.currentPartner
             }
-        case USER_PEBBLE_STATE_CHANGE:
+        case PARTNER_PEBBLE_STATE_CHANGE:
             return {
                 ...state,
                 pebbles: action.pebbles
             }
-        case USER_PARTNER_STATE_CHANGE:
+        case PARTNER_PARTNER_STATE_CHANGE:
             return {
                 ...state,
                 partnerID: action.partnerID

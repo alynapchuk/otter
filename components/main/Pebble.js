@@ -1,40 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import { Button, FlatList, View } from 'react-native';
+import React from 'react';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useLinkTo } from '@react-navigation/native';
 import { connect } from "react-redux";
 
-import firebase from 'firebase';
 require('firebase/firestore')
 
 function Pebble(props) {
 
-    const [pebbles, setPebbles] = useState([]);
+    const { pebbles } = props;
+    const { currentUser } = props;
     const linkTo = useLinkTo();
 
-    return (
+    console.log(pebbles)
 
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    const toSend = () => linkTo('/Send')
 
-            {/* <FlatList
-                numColumns={1}
-                horizontal={false}
-                data={pebbles}
-                renderItem={({ item }) => (
-                    <Text>{item.user.pebbles}</Text>
-                )}
-            /> */}
-
-            <Button
-                title="Send New Pebble"
-                onPress={() => linkTo('/Send')}
-            />
-
+    return (<>
+        {pebbles.map((pebble, index) => (
+            <View style={styles.pebbleContainer} key={index}>
+                <Text>{currentUser.name}</Text>
+                <Text>{pebble.title}</Text>
+                <Text>{pebble.message}</Text>
+            </View>
+        ))}
+        <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.buttons}
+                onPress={toSend}>
+                <Text style={styles.text}>Send New Pebble</Text>
+            </TouchableOpacity>
         </View>
-    );
+
+    </>)
 }
 
 const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser,
+    pebbles: store.userState.pebbles
 });
 
 export default connect(mapStateToProps, null)(Pebble);
+
+const styles = StyleSheet.create({
+    pebbleContainer: {
+        flex: 1,
+        alignItems: "flex-end",
+        backgroundColor: "white",
+        margin: 5,
+    },
+    buttonContainer: {
+        flex: 1,
+        backgroundColor: "white",
+        alignItems: "center",
+        justifyContent: 'flex-end',
+    },
+    buttons: {
+        backgroundColor: '#03989e',
+        padding: 10,
+        margin: 10,
+        alignItems: 'center'
+    },
+    text: {
+        color: 'white',
+        fontSize: 15,
+    },
+});

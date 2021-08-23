@@ -30,6 +30,8 @@ import Login from "./components/auth/Login";
 import Main from "./components/Main";
 import Upload from './components/main/Upload'
 import Send from "./components/main/Send";
+import LoveLanguages from "./components/main/LoveLanguages";
+import Search from "./components/main/Search";
 
 const Stack = createStackNavigator();
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -98,13 +100,23 @@ export class App extends Component {
                 options={{ headerShown: false }}
               />
               <Stack.Screen
-                name="Upload"
+                name="Upload Profile Picture"
                 component={Upload}
                 navigation={this.props.navigation}
               />
               <Stack.Screen
                 name="Send"
                 component={Send}
+                navigation={this.props.navigation}
+              />
+              <Stack.Screen
+                name="Search"
+                component={Search}
+                navigation={this.props.navigation}
+              />
+              <Stack.Screen
+                name="Love Language Quiz"
+                component={LoveLanguages}
                 navigation={this.props.navigation}
               />
             </Stack.Navigator>

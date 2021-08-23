@@ -25,7 +25,7 @@ export class QuestionsGame extends Component {
       ]
     },
     {
-      questionText: "Have you ever dated a friends ex? ",
+      questionText: "Have you ever gotten caught dancing in front of the mirror?",
       answerOptions: [
         { answerText: "Yes", isCorrect: false },
         { answerText: "No", isCorrect: true },
@@ -40,7 +40,7 @@ export class QuestionsGame extends Component {
       ]
     },
     {
-      questionText: "Would you ever stay friends with an ex?",
+      questionText: "Have you ever forgotten someone's name even though you’ve spent time with them in the past?",
       answerOptions: [
         { answerText: "Yes", isCorrect: true },
         { answerText: "No", isCorrect: false },
@@ -49,7 +49,7 @@ export class QuestionsGame extends Component {
     },
     {
       questionText:
-        "Would you tell a lie to keep from hurting your significant Otter's feelings?",
+        "Have you ever gotten locked out of your own house? ",
       answerOptions: [
         { answerText: "Yes", isCorrect: true },
         { answerText: "No", isCorrect: false },
@@ -57,7 +57,7 @@ export class QuestionsGame extends Component {
       ]
     },
     {
-      questionText: "Would you share your phone password?",
+      questionText: "Have you ever had an imaginary friend? ",
       answerOptions: [
         { answerText: "Yes", isCorrect: true },
         { answerText: "No", isCorrect: false },
@@ -73,7 +73,7 @@ export class QuestionsGame extends Component {
       ]
     },
     {
-      questionText: "Would you get a tattoo of your significant Otter's name?",
+      questionText: "Do you think you would be a good ninja?",
       answerOptions: [
         { answerText: "Yes", isCorrect: true },
         { answerText: "No", isCorrect: true },
@@ -81,7 +81,7 @@ export class QuestionsGame extends Component {
       ]
     },
     {
-      questionText: "Have you ever been discriminated against?",
+      questionText: "Have you ever “sharted”? As in farted, but pooped yourself a little?",
       answerOptions: [
         { answerText: "Yes", isCorrect: true },
         { answerText: "No", isCorrect: true },
@@ -89,7 +89,7 @@ export class QuestionsGame extends Component {
       ]
     },
     {
-      questionText: "Have you ever done something you regret in life?",
+      questionText: "Have you ever made a ridiculous impulse purchase?",
       answerOptions: [
         { answerText: "Yes", isCorrect: true },
         { answerText: "No", isCorrect: false },
@@ -97,7 +97,7 @@ export class QuestionsGame extends Component {
       ]
     },
     {
-      questionText: "Do you completely trust your significant Otter?",
+      questionText: "Have you ever slept in until 3 in the afternoon or later? ",
       answerOptions: [
         { answerText: "Yes", isCorrect: true },
         { answerText: "No", isCorrect: true },
@@ -136,49 +136,46 @@ export class QuestionsGame extends Component {
       ]
     },
     {
-      questionText: "Do you believe in a higher being?",
+      questionText: "Do you like piña coladas?",
       answerOptions: [
         { answerText: "Yes", isCorrect: true },
-        { answerText: "No", isCorrect: true },
+        { answerText: "No", isCorrect: true }
+        
+      ]
+    },
+    {
+      questionText:
+        "Do your parents ever embarrass you?",
+      answerOptions: [
+        { answerText: "Yes", isCorrect: true },
+        { answerText: "No", isCorrect: false },
         { answerText: "Its Complicated", isCorrect: true }
+        
       ]
     },
     {
       questionText:
-        "Do you have a bias towards any racial, religious or political group?",
+        "Do you think you will have any regrets when you’re 90?",
       answerOptions: [
         { answerText: "Yes", isCorrect: true },
         { answerText: "No", isCorrect: false },
-        { answerText: "Its Complicated", isCorrect: false },
-        { answerText: "never", isCorrect: false }
+        { answerText: "Its Complicated", isCorrect: false }
       ]
     },
     {
-      questionText:
-        "Have you ever crushed on someome other than your Otter while in a relationship?",
+      questionText: "Do you believe in ghosts?",
       answerOptions: [
         { answerText: "Yes", isCorrect: true },
         { answerText: "No", isCorrect: false },
-        { answerText: "Its Complicated", isCorrect: false },
-        { answerText: "never", isCorrect: false }
+        { answerText: "Its Complicated", isCorrect: false }
       ]
     },
     {
-      questionText: "Would you leave your significant Otter for $1million?",
+      questionText: "Do you sing in the shower?",
       answerOptions: [
         { answerText: "Yes", isCorrect: true },
         { answerText: "No", isCorrect: false },
-        { answerText: "Its Complicated", isCorrect: false },
-        { answerText: "never", isCorrect: false }
-      ]
-    },
-    {
-      questionText: "Do you believe in love at first sight?",
-      answerOptions: [
-        { answerText: "Yes", isCorrect: true },
-        { answerText: "No", isCorrect: false },
-        { answerText: "Its Complicated", isCorrect: false },
-        { answerText: "never", isCorrect: false }
+        { answerText: "Its Complicated", isCorrect: false }
       ]
     }
   ];
@@ -204,44 +201,53 @@ export class QuestionsGame extends Component {
     }
   };
 
-start(){
+
   return (
-      <View>
-    <Text className="App">
+    <View>
+    <View className="App">
       <Text>Honest Otter Question Game</Text>
       <Text> |Conversation starters for you & your significant Otter|</Text>
       {showScore ? (
-        <Text className="question-section">
+        <View className="question-section">
           {" "}
           You scored {score} integrity points out of {questions.length}
-        </Text>
+        </View>
       ) : (
         <>
-          <Text className="question-count">
-            <span className="question__number">
+          <View className="question-count">
+            <Text className="question__number">
               {" "}
               Question{" "}
-              <span className="current-question">{currentQuestion + 1}</span>
-            </span>
+              <Text className="current-question">{currentQuestion + 1}</Text>
+            </Text>
             /{questions.length}
-          </Text>
-          <Text className="question-text">
+          </View>
+          <View className="question-text">
             {" "}
             {questions[currentQuestion].questionText}
-          </Text>
-          <Text className="answer-section">
+          </View>
+          <View className="answer-section">
             {questions[currentQuestion].answerOptions.map((answerOptions) => (
-              <button
+              <Button
                 onClick={() => handleAnswerButtonClick(answerOptions.isCorrect)}
               >
                 {answerOptions.answerText}
-              </button>
+              </Button>
             ))}
-          </Text>
+          </View>
         </>
       )}
-    </Text>
+    </View>
     </View>
   );
-}
+            
 
+
+
+
+
+
+
+
+
+          

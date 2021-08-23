@@ -1,10 +1,10 @@
-import { combineReducers } from "redux"; // ALLOWS MANIPULATION OF STATE OF DIFFERENT OBJECTS
+import { combineReducers } from "redux";
 import { user } from './user';
-
-// REDUCERS HANDLE ACTIONS (CHANGES/EVENTS)
+import { partner } from './partner';
 
 const Reducers = combineReducers({
-    userState: user
+    userState: user,
+    partnerState: partner,
 })
 
 export default Reducers

@@ -57,9 +57,9 @@ Otter is a relationship enhancement app which was designed to improve today's da
 <u>Key Focuses</u>
 * Calendar - Otter's calendar feature allows couples to keep each other up-to-date on upcoming life changes and provides a non-intrusive reminder of important milestones. Not really enthusiac about a new job interview? Otter's calendar features a "mood" setting to express any nervousness, or anticipated excitement.
 * Love Language Game - How do you express love? How does your Otter feel loved? Take the Otter Love Language quiz to learn more about the love patterns in your realtionship!
-* Otter Question Game -  Running out of topic? Don't worry we've got you covered with 20 thought provoking questions!
+* Otter Question Game -  Running out of topics? Don't worry we've got you covered with 20 thought provoking questions!
 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Random Dad Joke: I love you... Like no Otter!
 
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
@@ -132,7 +132,7 @@ Contributions are what make the open source community such an amazing place to b
 Alyna Palamarchuk - [Portfolio](https://alynapchuk.com) - [LinkedIn](https://www.linkedin.com/in/alynapchuk/) - alynapchuk@gmail.com <br />
 Otis Wilcox - <br />
 Erin Harper - <br />
-Joshua Simon - <br />[Portfolio](http://www.simonj.network) -[LinkedIn](https://www.linkedin.com/in/joshua-simon-2000b3185/) - itt.simonj@gmail.com <br/>
+Joshua Simon - [Portfolio](http://www.simonj.network) -[LinkedIn](https://www.linkedin.com/in/joshua-simon-2000b3185/) - itt.simonj@gmail.com <br/>
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements

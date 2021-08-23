@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useLinkTo } from '@react-navigation/native';
 import { connect } from "react-redux";
 

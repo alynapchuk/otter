@@ -1,4 +1,4 @@
-import { USER_PEBBLE_STATE_CHANGE, USER_STATE_CHANGE } from "../constants/index";
+import { USER_PEBBLE_STATE_CHANGE, USER_STATE_CHANGE, USER_PARTNER_STATE_CHANGE, PARTNER_STATE_CHANGE, PARTNER_PEBBLE_STATE_CHANGE, PARTNER_PARTNER_STATE_CHANGE } from "../constants/index";
 import firebase from "firebase";
 require('firebase/firestore')
 
@@ -33,6 +33,47 @@ export function fetchUserPebbles() {
                     return { id, ...data }
                 })
                 dispatch({ type: USER_PEBBLE_STATE_CHANGE, pebbles })
+            })
+    })
+}
+
+export function fetchPartnerID() {
+    return ((dispatch) => {
+        firebase.firestore()
+            .collection("partners")
+            .doc(firebase.auth().currentUser.uid)
+            .collection("usersPartner")
+            .onSnapshot((snapshot) => {
+                let partnerID = snapshot.docs.map(doc => {
+                    const id = doc.id;
+                    return id
+                })
+                dispatch({ type: USER_PARTNER_STATE_CHANGE, partnerID });
+                dispatch(fetchPartnerData());
+
+
+                console.log(partnerID)
+
+            })
+    })
+}
+
+export function fetchPartnerData(uid) {
+    return ((dispatch) => {
+        firebase.firestore()
+            .collection("users")
+            .doc(uid)
+            .get()
+            .then((snapshot) => {
+                if (snapshot.exists) {
+                    let currentPartner = snapshot.data();
+                    currentPartner.uid = snapshot.id;
+
+                    dispatch({ type: PARTNER_STATE_CHANGE, currentPartner });
+                }
+                else {
+                    console.log('does not exist')
+                }
             })
     })
 }

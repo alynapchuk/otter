@@ -17,20 +17,25 @@ function Home(props) {
           style={styles.userImage}
           source={{ uri: currentUser.profile_picture } || require('../../assets/profile.png')} />
 
-        <Text>Welcome to your home screen, {currentUser.name}!</Text>
-        <Text>Your love language is: {currentUser.lovelanguage}</Text>
-        <Text>Your otters language is:</Text>
+        <Text style={{ fontSize: 18, }}>{currentUser.name}</Text>
+        <Text>Love Language - {currentUser.lovelanguage}</Text>
+
+        <Image
+          style={styles.userImage}
+          source={require('../../assets/example.jpg')} />
+        <Text style={{ fontSize: 18, }}>Alejandro Garcia</Text>
+        <Text>Love Language - Quality Time</Text>
 
       </View>
+
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.buttons}
+        <TouchableOpacity style={styles.topButtons}
           onPress={() => linkTo('/Upload Profile Picture')}>
           <Text style={styles.text}>Change Photo</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttons}
+        </TouchableOpacity><TouchableOpacity style={styles.topButtons}
           onPress={() => linkTo('/Search')}>
           <Text style={styles.text}>Find Your Otter</Text>
-        </TouchableOpacity>
+        </TouchableOpacity></View><View>
         <TouchableOpacity style={styles.buttons}
           onPress={() => linkTo('/Love Language Quiz')}>
           <Text style={styles.text}>Love Language Quiz</Text>
@@ -50,25 +55,33 @@ export default connect(mapStateToProps, null)(Home);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonContainer: {
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     backgroundColor: "white",
   },
   userImage: {
-    height: 150,
-    width: 150,
+    height: 200,
+    width: 200,
+  },
+  buttonContainer: {
+    backgroundColor: "white",
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  topButtons: {
+    backgroundColor: '#03989e',
+    padding: 20,
+    width: '50%',
+    alignItems: 'center'
   },
   buttons: {
     backgroundColor: '#03989e',
-    padding: 10,
-    marginTop: 1,
-    alignItems: 'center'
+    padding: 20,
+    alignItems: 'center',
   },
   text: {
     color: 'white',
     fontSize: 15,
-  },
+  }
 });

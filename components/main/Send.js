@@ -41,7 +41,7 @@ export default function Send() {
             />
 
             <TouchableOpacity style={styles.buttons}
-                onPress={() => this.sendPebble()}>
+                onPress={() => sendPebble()}>
                 <Text style={styles.text}>Send Pebble</Text>
             </TouchableOpacity>
         </View>

@@ -33,10 +33,13 @@ function Search(props) {
     }
 
     return (<>
-        <TextInput
-            placeholder="Type Here..."
-            onChangeText={(search) => searchPartner(search)} />
-        <View>
+        <View style={styles.container}>
+            <TextInput
+                style={styles.input}
+                placeholder="Type Here..."
+                onChangeText={(search) => searchPartner(search)} />
+        </View>
+        <View style={styles.input}>
             <FlatList
                 numColumns={1}
                 horizontal={false}
@@ -60,4 +63,20 @@ const mapStateToProps = (store) => ({
 export default connect(mapStateToProps, null)(Search);
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "white",
+        justifyContent: 'space-around',
+    },
+    buttons: {
+        backgroundColor: '#03989e',
+        padding: 20,
+        alignItems: 'center'
+    },
+    text: {
+        color: 'white',
+        fontSize: 15,
+    },
+    input: {
+        padding: 20
+    }
 });

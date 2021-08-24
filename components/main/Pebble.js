@@ -16,13 +16,21 @@ function Pebble(props) {
     const toSend = () => linkTo('/Send')
 
     return (<>
+
+        <View style={styles.partnerContainer}>
+            <Text style={{ fontSize: 18, padding: 5, }}>Another Title That's Random</Text>
+            <Text style={{ padding: 5, }}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+            <Text style={{ padding: 5, }}>♥ Alejandro Garcia</Text>
+        </View>
+
         {pebbles.map((pebble, index) => (
-            <View style={styles.container} key={index}>
-                <Text>{currentUser.name}</Text>
-                <Text>{pebble.title}</Text>
-                <Text>{pebble.message}</Text>
+            <View style={styles.senderContainer} key={index}>
+                <Text style={styles.titleText}>{pebble.title}</Text>
+                <Text style={styles.text}>{pebble.message}</Text>
+                <Text style={styles.text}>♥ {currentUser.name}</Text>
             </View>
         ))}
+
         <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.buttons}
                 onPress={toSend}>
@@ -40,11 +48,21 @@ const mapStateToProps = (store) => ({
 export default connect(mapStateToProps, null)(Pebble);
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "white",
+    senderContainer: {
+        backgroundColor: "#03989e",
+        padding: 10,
+        margin: 10,
+        alignItems: 'flex-end',
+        justifyContent: 'space-between'
+    },
+    partnerContainer: {
+        padding: 10,
+        margin: 10,
+        alignContent: 'flex-start',
+        justifyContent: 'space-between',
+        backgroundColor: 'white'
     },
     buttonContainer: {
-        backgroundColor: "white",
         flex: 1,
         justifyContent: 'flex-end'
     },
@@ -55,6 +73,11 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontSize: 15,
+        padding: 5,
+    },
+    titleText: {
+        color: 'white',
+        fontSize: 18,
+        padding: 5,
     }
 });

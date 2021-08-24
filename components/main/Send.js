@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, View } from 'react-native';
+import { TouchableOpacity, View, StyleSheet, Text } from 'react-native';
 import firebase from 'firebase'
 import { TextInput } from 'react-native-gesture-handler';
 import { useLinkTo } from '@react-navigation/native';
@@ -29,21 +29,40 @@ export default function Send() {
 
     return (
 
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.container}>
 
-            <TextInput
-                placeholder="title"
+            <TextInput style={styles.input}
+                placeholder="Pebble Title"
                 onChangeText={(title) => setTitle(title)}
             />
-            <TextInput
-                placeholder="message"
+            <TextInput style={styles.input}
+                placeholder="Otter Tip: Always try to refrain from you-statements."
                 onChangeText={(message) => setMessage(message)}
             />
 
-            <Button
-                title="send"
-                onPress={() => sendPebble()}
-            />
+            <TouchableOpacity style={styles.buttons}
+                onPress={() => this.sendPebble()}>
+                <Text style={styles.text}>Send Pebble</Text>
+            </TouchableOpacity>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "white",
+        justifyContent: 'space-evenly',
+    },
+    buttons: {
+        backgroundColor: '#03989e',
+        padding: 20,
+        alignItems: 'center'
+    },
+    text: {
+        color: 'white',
+        fontSize: 15,
+    },
+    input: {
+        padding: 20
+    }
+});

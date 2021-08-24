@@ -1,4 +1,4 @@
-import { USER_PEBBLE_STATE_CHANGE, USER_STATE_CHANGE, USER_PARTNER_STATE_CHANGE, PARTNER_STATE_CHANGE, PARTNER_PEBBLE_STATE_CHANGE, PARTNER_PARTNER_STATE_CHANGE } from "../constants/index";
+import { USER_PEBBLE_STATE_CHANGE, USER_STATE_CHANGE, USER_PARTNER_STATE_CHANGE, PARTNER_STATE_CHANGE, PARTNER_PEBBLE_STATE_CHANGE, PARTNER_PARTNER_STATE_CHANGE, USER_EVENTS_STATE_CHANGE } from "../constants/index";
 import firebase from "firebase";
 require('firebase/firestore')
 
@@ -74,6 +74,25 @@ export function fetchPartnerData(uid) {
                 else {
                     console.log('does not exist')
                 }
+            })
+    })
+}
+
+export function fetchUserEvents() {
+    return ((dispatch) => {
+        firebase.firestore()
+            .collection('events')
+            .doc(firebase.auth().currentUser.uid)
+            .collection('userEvents')
+            .orderBy('creation', 'asc')
+            .get()
+            .then((snapshot) => {
+                let events = snapshot.docs.map(doc => {
+                    const data = doc.data();
+                    const id = doc.id;
+                    return { id, ...data }
+                })
+                dispatch({ type: USER_EVENTS_STATE_CHANGE, events })
             })
     })
 }

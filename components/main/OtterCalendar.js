@@ -1,54 +1,34 @@
-import React, { useState, createRef } from "react";
-import { Modal, Button, TouchableOpacity, View, Text } from "react-native";
+import React from "react";
+import { Button, TouchableOpacity, View, Text } from "react-native";
 import { Agenda } from "react-native-calendars";
 import { Avatar, Card } from "react-native-paper";
 import { useLinkTo } from "@react-navigation/native";
 import { connect } from "react-redux";
+require('firebase/firestore')
 
-const timeToString = (time) => {
-  const date = new Date(time);
-  return date.toISOString().split("T")[0];
-};
+function toDateTime(secs) {
+  var t = new Date(1970, 1, 1);
+  t.setSeconds(secs);
+  let year=t.getFullYear();
+  let month=t.getMonth();
+  let day=t.getDate()
+  return year+"-"+less10(month)+"-"+less10(day);
+}
 
-const agendaRef = createRef();
-console.log("the agenda ref is: ", agendaRef);
+function less10(time){
+return time<10 ? "0"+time :time;
+}
 
-const OtterCalendar = () => {
+function OtterCalendar (props) {
+  const { events } = props;
+
   const linkTo = useLinkTo();
-
-  // const [items, setItems] = useState({});
-
-  // const loadItems = (day) => {
-  //   setTimeout(() => {
-  //     for (let i = 0; i < 5; i++) {
-  //       const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-  //       const strTime = timeToString(time);
-  //       if (!items[strTime]) {
-  //         items[strTime] = [];
-  //         const numItems = Math.floor(Math.random() * 3 + 1);
-  //         for (let j = 0; j < numItems; j++) {
-  //           items[strTime].push({
-  //             name: "Item for " + strTime + " #" + j,
-  //             height: Math.max(50, Math.floor(Math.random() * 5)),
-  //           });
-  //         }
-  //         console.log(items);
-  //       }
-  //     }
-  //     const newItems = {};
-  //     Object.keys(items).forEach((key) => {
-  //       newItems[key] = items[key];
-  //     });
-  //     setItems(newItems);
-  //   }, 1000);
-  // };
 
   const renderItem = (item) => {
     return (
       <TouchableOpacity
         style={{ marginRight: 10, marginTop: 17 }}
         onPress={() => {
-          // this.setModalVisible(true);
           item.push({
             "2021-08-19": [{ name: "item 2 - any js object" }],
           });
@@ -72,38 +52,55 @@ const OtterCalendar = () => {
     );
   };
 
-  const _testAlert = (day) => {
-    alert("Hello this day is: ", day);
-  };
+
+  const items = events.map((event, index) => { 
+    const date = toDateTime(event.event_date.seconds)
+    const items = {
+      [date]: [{name: event.event_name}]
+    }
+    console.log('the items are: ', items)
+    return items
+    })
+    console.log('line 60 items', items)
+    
+    const newItems = items.reduce((obj, element) => {
+      let x = Object.entries(element)[0];
+      let key = x[0];
+      let value = x[1];
+      obj[key] = value;
+      return obj
+    },{})
+    console.log('new objects: ', newItems)
+
+
+
+
+
+
+
 
   return (
-    <View style={{ flex: 1, marginTop: 33 }}>
-      <Agenda
-        // ref={agendaRef}
-        items={{
-          "2021-08-19": [
-            { name: "item 1 - any js object" },
-            { name: "item 2 - another js object" },
-          ],
+    <>
 
-          "2021-08-23": [{ name: "item 2 - any js object", height: 80 }],
-          "2021-08-24": [],
-          "2021-08-25": [
-            { name: "item 3 - any js object" },
-            { name: "any js object" },
-          ],
-        }}
-        // loadItemsForMonth={loadItems}
-        // selected={"2021-08-18"}
-        renderItem={renderItem}
-      />
+    <View style={{ flex: 1, marginTop: 33 }}>
+      <Agenda items={newItems} renderItem={renderItem}>
+
+      </Agenda>
+
+      </View>
+
+
+
+      
       <Button title="Add Event" onPress={() => linkTo("/AddEvent")} />
-    </View>
+    
+    </>
   );
 };
 
 const mapStateToProps = (store) => ({
   currentUser: store.userState.currentUser,
+  events: store.userState.events
 });
 
 export default connect(mapStateToProps, null)(OtterCalendar);

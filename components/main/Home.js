@@ -18,7 +18,7 @@ function Home(props) {
           source={{ uri: currentUser.profile_picture } || require('../../assets/profile.png')} />
 
         <Text>Welcome to your home screen, {currentUser.name}!</Text>
-        <Text>Your love language is:</Text>
+        <Text>Your love language is: {currentUser.lovelanguage}</Text>
         <Text>Your otters language is:</Text>
 
       </View>

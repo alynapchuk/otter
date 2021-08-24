@@ -10,6 +10,7 @@ import Pebble from "./main/Pebble";
 import QuestionGame from "./main/QuestionGame";
 import OtterCalendar from "./main/OtterCalendar";
 
+
 const Tab = createBottomTabNavigator();
 
 export class Main extends Component {
@@ -18,7 +19,6 @@ export class Main extends Component {
     this.props.fetchUserPebbles();
     this.props.fetchPartnerID();
     this.props.fetchUserEvents();
-
   }
 
   render() {
@@ -78,7 +78,8 @@ export class Main extends Component {
               <MaterialCommunityIcons name="star" color="#03989e" size={20} />
             ),
           }}
-        /> */}
+        />*/}
+
       </Tab.Navigator>
     );
   }

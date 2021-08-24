@@ -124,12 +124,15 @@ export class LoveLanguages extends Component {
         const index = this.state.currentQuestionPair
         return (
             <View style={styles.container}>
-                <Text style={styles.header2}>It's more meaningful to me when...</Text>
-                <br></br>
-                <Button title={Questions[index][0].text} color="#841584" style={styles.button} onPress={() => this.storeUserSelection(Questions[index][0].language)}></Button>
-                <br></br>
-                <Button title={Questions[index][1].text} color="#841584" style={styles.button} onPress={() => this.storeUserSelection(Questions[index][1].language)}></Button>
-                <br></br>
+                <Text style={styles.meaningful}>It's more meaningful to me when...</Text>
+                
+                <TouchableOpacity style={styles.button} onPress={() => this.storeUserSelection(Questions[index][0].language)}>
+                <Text style={styles.selectionText}>{Questions[index][0].text}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.button} onPress={() => this.storeUserSelection(Questions[index][1].language)}>
+<Text style={styles.selectionText}>{Questions[index][1].text}</Text>
+                </TouchableOpacity>
                 <Text>Question {index+1}/{Questions.length}</Text>
                 </View>
         )
@@ -138,9 +141,11 @@ export class LoveLanguages extends Component {
     results(){
         return (
             <View style={styles.container}>
-                <Text>Your Primary Love Language is:</Text>
-                <Text>{this.state.results}</Text>
-                <Button title="Take the quiz again!" onPress={() => this.setQuestions()}></Button>
+                <Text style={styles.meaningful}>Your Primary Love Language is:</Text>
+                <Text style={styles.header3}>{this.state.results}</Text>
+                <TouchableOpacity style={styles.startButton} onPress={() => this.setQuestions()}>
+                <Text style={styles.header2}>Take the quiz again!</Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -172,13 +177,45 @@ const styles = StyleSheet.create({
     },
 
     header2: {
-        fontSize: 24
+        fontSize: 18,
+        color: "white",
+        fontWeight: "bold"
+    },
+
+    header3: {
+        fontSize: 24,
+        color: "white",
+        fontWeight: "bold",
+        marginVertical: 40
+    },
+
+    meaningful: {
+        marginVertical: 30,
+        fontSize: 20,
+        color: "white",
+        fontWeight: "bold"
+    },
+
+    startButton: {
+        backgroundColor: "#44b3a4",
+        paddingVertical: 30,
+        width: "70%",
+        alignItems: 'center',
+        borderRadius: 10
     },
 
     button: {
-        backgroundColor: "#841584",
-        paddingVertical: 20,
-        paddingHorizontal: 40
+        backgroundColor: "#44b3a4",
+        paddingVertical: 70,
+        width: "100%",
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        marginVertical: 10
+    },
+
+    selectionText: {
+        fontSize: 18,
+        color: "white"
     }
 })
 

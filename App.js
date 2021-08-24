@@ -123,6 +123,7 @@ export class App extends Component {
               <Stack.Screen
                 name="AddEvent"
                 component={AddEvent}
+                navigation={this.props.navigation}
                 />
                 <Stack.Screen
                 name="Search"

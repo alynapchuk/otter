@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchUser, fetchUserPebbles, fetchPartnerID } from "../redux/actions/index";
+import { fetchUser, fetchUserPebbles, fetchPartnerID, fetchUserEvents } from "../redux/actions/index";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import Home from "./main/Home";
 import Pebble from "./main/Pebble";
 import QuestionGame from "./main/QuestionGame";
-// import OtterCalendar from "./main/OtterCalendar";
+import OtterCalendar from "./main/OtterCalendar";
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +17,7 @@ export class Main extends Component {
     this.props.fetchUser();
     this.props.fetchUserPebbles();
     this.props.fetchPartnerID();
+    this.props.fetchUserEvents();
 
   }
 
@@ -35,7 +36,7 @@ export class Main extends Component {
           }}
         />
 
-        {/* <Tab.Screen
+        <Tab.Screen
           name="Calendar"
           component={OtterCalendar}
           options={{
@@ -49,7 +50,7 @@ export class Main extends Component {
               />
             ),
           }}
-        /> */}
+        />
 
         <Tab.Screen
           name="Pebble"
@@ -67,7 +68,7 @@ export class Main extends Component {
           }}
         />
 
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Game"
           component={QuestionGame}
           options={{
@@ -77,7 +78,7 @@ export class Main extends Component {
               <MaterialCommunityIcons name="star" color="#03989e" size={20} />
             ),
           }}
-        />
+        /> */}
       </Tab.Navigator>
     );
   }
@@ -88,6 +89,6 @@ const mapStateToProps = (store) => ({
   currentPartner: store.partnerState.currentPartner,
 });
 
-const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchUserPebbles, fetchPartnerID }, dispatch);
+const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchUserPebbles, fetchPartnerID, fetchUserEvents }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(Main);

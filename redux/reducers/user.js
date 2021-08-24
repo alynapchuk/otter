@@ -1,9 +1,10 @@
-import { USER_STATE_CHANGE, USER_PEBBLE_STATE_CHANGE, USER_PARTNER_STATE_CHANGE } from "../constants"
+import { USER_STATE_CHANGE, USER_PEBBLE_STATE_CHANGE, USER_PARTNER_STATE_CHANGE, USER_EVENTS_STATE_CHANGE } from "../constants"
 
 const initialState = {
     currentUser: '',
     pebbles: '',
     partnerID: '',
+    events: '',
 }
 
 export const user = (state = initialState, action) => {
@@ -22,6 +23,11 @@ export const user = (state = initialState, action) => {
             return {
                 ...state,
                 partnerID: action.partnerID
+            }
+        case USER_EVENTS_STATE_CHANGE:
+            return {
+                ...state,
+                events: action.events
             }
         default:
             return state;

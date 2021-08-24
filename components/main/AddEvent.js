@@ -72,7 +72,7 @@ export default function AddEvent() {
               marginLeft: 0
             }
           }}
-          style={{ width: 80, backgroundColor: "white" }}
+          style={{ width: '100%', backgroundColor: "white" }}
           value={event_date}
           onChange={onChange}
           onDateChange={(event_date) => setDate({ event_date })}

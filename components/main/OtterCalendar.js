@@ -22,7 +22,7 @@ function less10(time) {
 function OtterCalendar(props) {
   const { currentUser } = props;
   const { events } = props;
-
+  console.log('current user is: ', currentUser)
   const linkTo = useLinkTo();
 
   const renderItem = (item) => {
@@ -58,7 +58,7 @@ function OtterCalendar(props) {
   const items = events.map((event, index) => {
     const date = toDateTime(event.event_date.seconds)
     const items = {
-      [date]: [{ name: event.event_name }]
+      [date]: [{ name: event.event_name + "- Feeling: " + event.emotion }]
     }
     console.log('the items are: ', items)
     return items
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   agendaContainer: {
     backgroundColor: "white",
     flex: 1,
-    marginTop: 33
+    marginTop: 6,
   },
   container: {
     backgroundColor: "white",

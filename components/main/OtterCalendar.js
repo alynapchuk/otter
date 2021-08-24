@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, TouchableOpacity, View, Text } from "react-native";
+import { Button, TouchableOpacity, View, Text, StyleSheet } from "react-native";
 import { Agenda } from "react-native-calendars";
 import { Avatar, Card } from "react-native-paper";
 import { useLinkTo } from "@react-navigation/native";
@@ -9,17 +9,18 @@ require('firebase/firestore')
 function toDateTime(secs) {
   var t = new Date(1970, 1, 1);
   t.setSeconds(secs);
-  let year=t.getFullYear();
-  let month=t.getMonth();
-  let day=t.getDate()
-  return year+"-"+less10(month)+"-"+less10(day);
+  let year = t.getFullYear();
+  let month = t.getMonth();
+  let day = t.getDate()
+  return year + "-" + less10(month) + "-" + less10(day);
 }
 
-function less10(time){
-return time<10 ? "0"+time :time;
+function less10(time) {
+  return time < 10 ? "0" + time : time;
 }
 
-function OtterCalendar (props) {
+function OtterCalendar(props) {
+  const { currentUser } = props;
   const { events } = props;
 
   const linkTo = useLinkTo();
@@ -35,7 +36,7 @@ function OtterCalendar (props) {
         }}
       >
         <Card>
-          <Card.Content style={{ backgroundColor: "lavender" }}>
+          <Card.Content>
             <View
               style={{
                 flexDirection: "row",
@@ -44,7 +45,8 @@ function OtterCalendar (props) {
               }}
             >
               <Text>{item.name}</Text>
-              <Avatar.Text label="O" style={{ backgroundColor: "#03989e" }} />
+
+              <Avatar.Text label=":)" style={{ backgroundColor: "#03989e" }} />
             </View>
           </Card.Content>
         </Card>
@@ -53,24 +55,24 @@ function OtterCalendar (props) {
   };
 
 
-  const items = events.map((event, index) => { 
+  const items = events.map((event, index) => {
     const date = toDateTime(event.event_date.seconds)
     const items = {
-      [date]: [{name: event.event_name}]
+      [date]: [{ name: event.event_name }]
     }
     console.log('the items are: ', items)
     return items
-    })
-    console.log('line 60 items', items)
-    
-    const newItems = items.reduce((obj, element) => {
-      let x = Object.entries(element)[0];
-      let key = x[0];
-      let value = x[1];
-      obj[key] = value;
-      return obj
-    },{})
-    console.log('new objects: ', newItems)
+  })
+  console.log('line 60 items', items)
+
+  const newItems = items.reduce((obj, element) => {
+    let x = Object.entries(element)[0];
+    let key = x[0];
+    let value = x[1];
+    obj[key] = value;
+    return obj
+  }, {})
+  console.log('new objects: ', newItems)
 
 
 
@@ -81,19 +83,19 @@ function OtterCalendar (props) {
 
   return (
     <>
-
-    <View style={{ flex: 1, marginTop: 33 }}>
-      <Agenda items={newItems} renderItem={renderItem}>
-
-      </Agenda>
-
+      <View style={styles.agendaContainer}>
+        <Agenda items={newItems} renderItem={renderItem}>
+        </Agenda>
       </View>
 
 
 
-      
-      <Button title="Add Event" onPress={() => linkTo("/AddEvent")} />
-    
+
+      <TouchableOpacity style={styles.buttons}
+        onPress={() => linkTo("/AddEvent")}>
+        <Text style={styles.text}>Add Event</Text>
+      </TouchableOpacity>
+
     </>
   );
 };
@@ -104,3 +106,29 @@ const mapStateToProps = (store) => ({
 });
 
 export default connect(mapStateToProps, null)(OtterCalendar);
+
+const styles = StyleSheet.create({
+  agendaContainer: {
+    backgroundColor: "white",
+    flex: 1,
+    marginTop: 33
+  },
+  container: {
+    backgroundColor: "white",
+  },
+  buttonContainer: {
+    backgroundColor: "white",
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  buttons: {
+    backgroundColor: '#03989e',
+    padding: 20,
+    alignItems: 'center',
+  },
+  text: {
+    color: 'white',
+    fontSize: 15,
+  }
+});

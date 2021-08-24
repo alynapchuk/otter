@@ -28,7 +28,6 @@ export class Main extends Component {
           name="Home"
           component={Home}
           options={{
-            headerShown: false,
             tabBarShowLabel: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons color="#03989e" name="home" size={20} />
@@ -37,26 +36,9 @@ export class Main extends Component {
         />
 
         <Tab.Screen
-          name="Calendar"
-          component={OtterCalendar}
-          options={{
-            headerShown: false,
-            tabBarShowLabel: false,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons
-                name="calendar"
-                color="#03989e"
-                size={20}
-              />
-            ),
-          }}
-        />
-
-        <Tab.Screen
           name="Pebble"
           component={Pebble}
           options={{
-            headerShown: false,
             tabBarShowLabel: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
@@ -68,17 +50,31 @@ export class Main extends Component {
           }}
         />
 
-        {/* <Tab.Screen
-          name="Game"
-          component={QuestionGame}
+        <Tab.Screen
+          name="Calendar"
+          component={OtterCalendar}
           options={{
-            headerShown: false,
             tabBarShowLabel: false,
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="star" color="#03989e" size={20} />
+              <MaterialCommunityIcons
+                name="calendar-blank"
+                color="#03989e"
+                size={20}
+              />
             ),
           }}
-        />*/}
+        />
+
+        <Tab.Screen
+          name="Conversation Starters"
+          component={QuestionGame}
+          options={{
+            tabBarShowLabel: false,
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="gamepad-square" color="#03989e" size={20} />
+            ),
+          }}
+        />
 
       </Tab.Navigator>
     );

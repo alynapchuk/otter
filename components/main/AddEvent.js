@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Button, View } from "react-native";
+import { TouchableOpacity, View, StyleSheet, TextInput, Text } from "react-native";
 import firebase from "firebase";
-import { TextInput } from "react-native-gesture-handler";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 require("firebase/firestore");
@@ -46,44 +45,75 @@ export default function AddEvent() {
         emotion,
         creation: firebase.firestore.FieldValue.serverTimestamp(),
       });
-      _dateAlert();
+    _dateAlert();
   };
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button onPress={showDatepicker} title="Select a date" />
+    <View style={styles.container}>
+
+      <TouchableOpacity
+        style={styles.buttons}
+        onPress={showDatepicker}>
+        <Text style={styles.text}>Select Date</Text>
+      </TouchableOpacity>
       {show && (
-      <DateTimePicker
-        date={event_date}
-        mode={mode}
-        placeholder="select date"
-        format="YYYY-MM-DD"
-        confirmBtnText="Confirm"
-        cancelBtnText="Cancel"
-        customStyles={{
-          dateIcon: {
-            position: 'absolute',
-            left: 0,
-            top: 4,
-            marginLeft: 0
-          }}}
-          style={{width: 80, backgroundColor: "white"}}
+        <DateTimePicker
+          date={event_date}
+          mode={mode}
+          placeholder="select date"
+          format="YYYY-MM-DD"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{
+            dateIcon: {
+              position: 'absolute',
+              left: 0,
+              top: 4,
+              marginLeft: 0
+            }
+          }}
+          style={{ width: 80, backgroundColor: "white" }}
           value={event_date}
           onChange={onChange}
-        onDateChange={(event_date) => setDate({ event_date })}
-        mode={"date"}
-      />
+          onDateChange={(event_date) => setDate({ event_date })}
+          mode={"date"}
+        />
       )}
       <TextInput
-        placeholder="Add event name"
+        style={styles.input}
+        placeholder="Event Name"
         onChangeText={(event_name) => setEvent(event_name)}
       />
       <TextInput
+        style={styles.input}
         placeholder="How do you feel about the upcoming event?"
         onChangeText={(emotion) => setEmotion(emotion)}
       />
 
-      <Button title="send" onPress={() => sendEvent()} />
+      <TouchableOpacity style={styles.buttons}
+        onPress={() => sendEvent()}>
+        <Text style={styles.text}>Add Event</Text>
+      </TouchableOpacity>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    justifyContent: 'flex-start',
+  },
+  buttons: {
+    backgroundColor: '#03989e',
+    padding: 20,
+    alignItems: 'center'
+  },
+  text: {
+    color: 'white',
+    fontSize: 15,
+  },
+  input: {
+    padding: 20
+  }
+});

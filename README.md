@@ -130,7 +130,7 @@ Contributions are what make the open source community such an amazing place to b
 <!-- CONTACT -->
 ## Contact
 Alyna Palamarchuk - [Portfolio](https://alynapchuk.com) - [LinkedIn](https://www.linkedin.com/in/alynapchuk/) - alynapchuk@gmail.com <br />
-Otis Wilcox - <br />
+Otis Wilcox - [Portfolio](https://otis.codes) - [LinkedIn](https://www.linkedin.com/in/otiswilcox/) - otiswilcox@gmail.com <br />
 Erin Harper - <br />
 Joshua Simon - [Portfolio](http://www.simonj.network) -[LinkedIn](https://www.linkedin.com/in/joshua-simon-2000b3185/) - itt.simonj@gmail.com <br/>
 

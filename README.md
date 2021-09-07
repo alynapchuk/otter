@@ -14,7 +14,7 @@
   <h3 align="center">Otter</h3>
 
   <p align="center">
-    The app made for you and your significant otter! 
+    The app made for you and your significant otter! </br>
   <a href="https://youtu.be/ANMuMIL3N3c">Live Demo</a> | <a href="https://github.com/alynapchuk/otter/issues">Report Bug or Request Feature</a> 
   </p>
 </p>

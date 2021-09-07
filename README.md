@@ -18,6 +18,8 @@
     <br />
     <br />
     <a href="https://github.com/alynapchuk/otter/issues">Report Bug or Request Feature</a>
+  <br />
+  <a href="https://youtu.be/ANMuMIL3N3c">Live Demo</a>
   </p>
 </p>
 

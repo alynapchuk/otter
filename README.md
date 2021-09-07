@@ -61,9 +61,6 @@ Otter is a relationship enhancement app which was designed to improve today's da
 
 Random Dad Joke: I love you... Like no Otter!
 
-
-<video width="560" height="315" src="https://www.youtube.com/embed/ANMuMIL3N3c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
 ### Built With
 
 * React Native | React JS
